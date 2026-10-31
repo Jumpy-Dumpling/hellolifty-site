@@ -1,0 +1,47 @@
+---
+import Phone from './Phone.astro';
+const steps = [
+  { screen: 'workout', kicker: 'Set logging', title: 'Log a set in seconds, not minutes.', body: 'Your last numbers sit right there, and Lifty tells you what to try next. Hit a record and you\'ll know it.', alt: 'Lifty workout screen logging bench press sets with a rest timer',
+    ticks: ['Previous weights beside every set', 'Smart suggestions: "Add 5 lb. You hit 10 reps on every set."', 'Rest timer, plate calculator, warm-ups and supersets', 'Records celebrated, and ready to share'] },
+  { screen: 'progress', kicker: 'Progress', title: 'See exactly what\'s working.', body: 'Consistency, volume and balance on one screen, so you know when to push and when to ease off.', alt: 'Lifty progress screen with weekly streak, activity grid and volume chart',
+    ticks: ['Weekly streaks that reward showing up', 'Volume per muscle against the range that keeps it growing', 'Estimated one-rep max and a trend for every lift', 'Measurements and progress photos, side by side'] },
+  { screen: 'coach', kicker: 'AI coach', title: 'A coach that reads your training.', body: 'Every few weeks Lifty looks at what you actually did and writes you a note in plain language, with specific next steps.', alt: 'Lifty training review with a written coach note and action steps',
+    ticks: ['Spots lifts that have stalled and volume that is uneven', 'Calls deload weeks before you burn out', 'Updates your routines so the plan keeps up with you'] },
+  { screen: 'friends', kicker: 'Friends', title: 'Training is better with a crew.', body: 'Connect by QR code or friend code. See their workouts, cheer their records and see who trained the most this week.', alt: 'Lifty friends feed with a friend request, weekly ranking and a friend\'s workout',
+    ticks: ['A feed of your friends\' workouts and PRs', 'Weekly leaderboard and shared challenges', 'You choose what you share, and only with people you accept'] },
+  { screen: 'studio', kicker: 'Lifty Studio', title: 'Pick it. Film it. Post it.', body: 'Turn your training into content. Lifty suggests ideas from your own workouts, guides each shot, and helps you edit and share.', alt: 'Lifty Studio home with a pick, film and post flow and recent videos',
+    ticks: ['Video ideas built from your real training', 'Shot-by-shot filming guidance', 'Edit and post without leaving the app'] },
+];
+---
+<section class="story" id="story">
+  <div class="wrap">
+    <div class="head reveal">
+      <span class="kicker">How it works</span>
+      <h2>Built for the way you <span class="grad">actually train.</span></h2>
+    </div>
+    <div class="story-grid">
+      <div class="story-stage" aria-hidden="true">
+        <div class="stage-sticky">
+          <div class="story-glow"></div>
+          <div class="story-phones">
+            {steps.map((s, i) => <Phone class={`sp ${i === 0 ? 'active' : ''}`} src={s.screen} data-sp={i} />)}
+          </div>
+          <div class="story-dots">{steps.map((_, i) => <i class={i === 0 ? 'on' : ''} data-dot={i}></i>)}</div>
+        </div>
+      </div>
+      <div class="story-steps">
+        {steps.map((s, i) => (
+          <article class={`step ${i === 0 ? 'active' : ''}`} data-step={i}>
+            <div class="step-copy">
+              <span class="kicker">{s.kicker}</span>
+              <h3>{s.title}</h3>
+              <p class="dim">{s.body}</p>
+              <ul class="ticks">{s.ticks.map((t) => <li><i class="i i-checkmark-circle"></i>{t}</li>)}</ul>
+            </div>
+            <Phone class="step-phone" src={s.screen} alt={s.alt} />
+          </article>
+        ))}
+      </div>
+    </div>
+  </div>
+</section>

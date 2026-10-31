@@ -1,0 +1,53 @@
+---
+import Base from '../layouts/Base.astro';
+import SimpleHero from '../components/SimpleHero.astro';
+import Pricing from '../components/Pricing.astro';
+import Waitlist from '../components/Waitlist.astro';
+import Faq from '../components/Faq.astro';
+import { TRIAL_DAYS, REFERRAL_TRIAL_DAYS, PRICE_MONTHLY, PRICE_YEARLY, PRICE_LIFETIME } from '../lib/config';
+
+const groups = [
+  { icon: 'sparkles', c1: '#5CC8FF', c2: '#12A8D6', title: 'Plan', items: ['AI-built programs for your goal and schedule', 'Proven templates and your own routines', 'Import from notes, a photo, Strong or Hevy'] },
+  { icon: 'timer', c1: '#37A2FF', c2: '#0A62F0', title: 'Train', items: ['Fast set logging with last session beside every set', 'Rest timers, plate calculator and supersets', 'Cardio, timed holds and band work'] },
+  { icon: 'pulse', c1: '#2FD0A0', c2: '#0E9CC8', title: 'Understand', items: ['Adaptive coach and written training reviews', 'Volume by muscle, estimated 1RM and streaks', 'Weight, measurements and private progress photos'] },
+  { icon: 'people', c1: '#FF7A93', c2: '#E5334B', title: 'Connect', items: ['Friends, a feed, reactions and a weekly leaderboard', 'Challenges, solo or with your crew', 'Lifty Studio for gym videos'] },
+  { icon: 'watch', c1: '#4C7DFF', c2: '#1B2F66', title: 'Everywhere', items: ['Apple Watch app, widgets and a lock screen Live Activity', 'Works offline, backs up when you reconnect', 'Export your data as a CSV any time'] },
+];
+const qa: [string, string][] = [
+  ['Is there a free plan?', `No. Every plan includes everything, and each starts with a ${TRIAL_DAYS}-day free trial so you can try it all first.`],
+  ['How does the free trial work?', `You start a monthly or yearly plan and get ${TRIAL_DAYS} days free. If you cancel before the trial ends, you are not charged. If a friend invited you, the trial is ${REFERRAL_TRIAL_DAYS} days.`],
+  ['What is the difference between the plans?', `Nothing about the features: every plan includes all of Lifty. Monthly is ${PRICE_MONTHLY} a month, Yearly is ${PRICE_YEARLY} a year, and Lifetime is ${PRICE_LIFETIME} once.`],
+  ['What does Lifetime include?', 'Lifty for good, with nothing more to pay, plus a Lifty starter pack: a tank or T-shirt, gym socks and a drawstring bag. It is a limited-time offer and will not always be available.'],
+  ['How do I cancel?', 'Subscriptions are managed in your Apple ID or Google Play settings, and you can cancel any time. Lifetime is a one-time purchase with nothing to cancel.'],
+  ['Where do I pay?', 'Purchases go through the App Store or Google Play, so payment and renewals are handled by Apple or Google, not by Lifty.'],
+];
+---
+<Base title="Pricing" description={`Lifty pricing: ${PRICE_MONTHLY} a month, ${PRICE_YEARLY} a year, or ${PRICE_LIFETIME} once. Every plan starts with a ${TRIAL_DAYS}-day free trial.`}>
+  <SimpleHero kicker="Pricing" title="One plan. Everything" accent="included." lede={`Start with ${TRIAL_DAYS} days free. Then pick monthly or yearly, or pay once and own it.`} />
+  <Pricing bare />
+  <section class="included">
+    <div class="wrap">
+      <div class="head reveal"><span class="kicker">What is included</span><h2>All of Lifty, on every plan<span class="grad">.</span></h2></div>
+      <div class="inc-grid">
+        {groups.map((g, i) => (
+          <article class="inc reveal" style={`--d:${(i % 2) * 0.07}s`}>
+            <h3><i class={`ico i i-${g.icon}`} style={`--c1:${g.c1};--c2:${g.c2}`}></i>{g.title}</h3>
+            <ul>{g.items.map((t) => <li><i class="i i-checkmark-circle"></i>{t}</li>)}</ul>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+  <section class="how">
+    <div class="wrap">
+      <div class="head reveal"><span class="kicker">How it works</span><h2>Simple from the first day<span class="grad">.</span></h2></div>
+      <div class="how-grid">
+        <article class="how-card reveal"><h3>Start free</h3><p>Pick monthly or yearly and get {TRIAL_DAYS} days free. A friend's code makes it {REFERRAL_TRIAL_DAYS}.</p></article>
+        <article class="how-card reveal" style="--d:.07s"><h3>Keep going, or don't</h3><p>Cancel any time in your Apple ID or Google Play settings. Cancel before the trial ends and you pay nothing.</p></article>
+        <article class="how-card reveal" style="--d:.14s"><h3>Or pay once</h3><p>Lifetime is a single purchase with a starter pack in the mail, while the limited-time offer lasts.</p></article>
+      </div>
+    </div>
+  </section>
+  <Waitlist />
+  <Faq items={qa} title="Pricing, good to" />
+</Base>

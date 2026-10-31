@@ -1,0 +1,74 @@
+---
+import { url } from '../lib/url';
+const days = ['M', 'T', 'W', 'T', 'F', 'S', 'S'];
+const on = [0, 2, 4, 5];
+const bars = [38, 62, 48, 80, 66, 94];
+const C = 2 * Math.PI * 38;
+const href = (s: string) => url(`features/${s}/`);
+---
+<section class="bento-section" id="features">
+  <div class="wrap">
+    <div class="head reveal">
+      <span class="kicker">Everything in one app</span>
+      <h2>From your first warm-up to your <span class="grad">next PR.</span></h2>
+      <p>Lifty replaces the notes app, the spreadsheet and three other apps. It plans the work, keeps the score and keeps you coming back.</p>
+    </div>
+
+    <div class="bento">
+      <a class="tile spot wide reveal" href={href('plans')}>
+        <div class="tile-copy"><i class="ico i i-sparkles" style="--c1:#5CC8FF;--c2:#12A8D6"></i><h3>A plan built for you</h3><p>Tell Lifty your goal, schedule and equipment and it writes your program. Or import your own notes, or start from a proven template.</p><span class="more">Explore plans<i class="i i-arrow-forward"></i></span></div>
+        <div class="viz viz-plan">
+          <div class="week">{days.map((d, i) => <span class={on.includes(i) ? 'on' : ''} style={`--i:${i}`}>{d}</span>)}</div>
+          <div class="plan-card"><div><b>Push Day</b><span>6 exercises &middot; 18 sets</span></div><i class="i i-play"></i><em class="meter"><i></i></em></div>
+        </div>
+      </a>
+
+      <a class="tile spot reveal" style="--d:.08s" href={href('set-logging')}>
+        <div class="viz viz-sets">
+          <div class="srow done"><span>1</span><em>185 &times; 10</em><i class="i i-checkmark"></i></div>
+          <div class="srow done"><span>2</span><em>185 &times; 10</em><i class="i i-checkmark"></i></div>
+          <div class="srow done pr"><span>3</span><em>190 &times; 9</em><b>PR</b><i class="i i-checkmark"></i></div>
+          <div class="srow live"><span>4</span><em>190 &times; <u></u></em><i class="i i-checkmark"></i></div>
+        </div>
+        <div class="tile-copy"><h3>Log a set in seconds</h3><p>Last session's numbers beside every set, with a rest timer, plate calculator and supersets.</p><span class="more">See set logging<i class="i i-arrow-forward"></i></span></div>
+      </a>
+
+      <a class="tile spot reveal" href={href('coach')}>
+        <div class="viz viz-coach"><div class="note"><i class="i i-sparkles"></i><p class="typed">Add 5 lb to Bench Press once all sets reach 10 reps.</p></div><div class="note n2"><i class="i i-trending-up"></i><p>Legs are running a little low. Add a session this week.</p></div></div>
+        <div class="tile-copy"><h3>An adaptive coach</h3><p>Spots stalled lifts, calls deload weeks and tells you when to add weight.</p><span class="more">Meet the coach<i class="i i-arrow-forward"></i></span></div>
+      </a>
+
+      <a class="tile spot reveal" style="--d:.08s" href={href('progress')}>
+        <div class="viz viz-stats">
+          <div class="ringbox"><svg viewBox="0 0 90 90"><circle cx="45" cy="45" r="38" /><circle class="fg" cx="45" cy="45" r="38" stroke-dasharray={`${C} ${C}`} style={`--c:${C}`} /></svg><b>4/4</b></div>
+          <div class="bars">{bars.map((h, i) => <i style={`--h:${h}%;--i:${i}`}></i>)}</div>
+        </div>
+        <div class="tile-copy"><h3>Analytics that explain</h3><p>Weekly volume for every muscle, your best weight at each rep count, and a trend for every lift.</p><span class="more">See progress<i class="i i-arrow-forward"></i></span></div>
+      </a>
+
+      <a class="tile spot reveal" style="--d:.16s" href={href('friends')}>
+        <div class="viz viz-crew">
+          <div class="faces"><span style="--c1:#2FD0A0;--c2:#0E9CC8">MR</span><span style="--c1:#9B7BFF;--c2:#5B3BE8">SK</span><span style="--c1:#FFC857;--c2:#F08A0C">AL</span><span style="--c1:#FF9A4D;--c2:#EE3F5A">JT</span></div>
+          <div class="rank"><b>#2</b><span>of 14 this week</span><i class="i i-trophy"></i></div>
+        </div>
+        <div class="tile-copy"><h3>Friends and challenges</h3><p>Follow your crew, race the weekly leaderboard and chase goals with a finish line.</p><span class="more">Meet the crew<i class="i i-arrow-forward"></i></span></div>
+      </a>
+
+      <a class="tile spot reveal" href={href('studio')}>
+        <div class="viz viz-studio">
+          <div class="flow"><span style="--i:0"><i class="i i-bulb"></i>Pick</span><u></u><span style="--i:1"><i class="i i-videocam"></i>Film</span><u></u><span style="--i:2"><i class="i i-paper-plane"></i>Post</span></div>
+        </div>
+        <div class="tile-copy"><h3>Lifty Studio</h3><p>Plan, film, edit and post gym videos without leaving the app.</p><span class="more">Open the studio<i class="i i-arrow-forward"></i></span></div>
+      </a>
+
+      <a class="tile spot wide reveal" style="--d:.08s" href={href('watch')}>
+        <div class="tile-copy"><i class="ico i i-watch" style="--c1:#4C7DFF;--c2:#1B2F66"></i><h3>On your wrist and your lock screen</h3><p>Tap your Apple Watch to log a set. Home screen widgets and a Live Activity keep your workout in view, no phone in hand.</p><span class="more">See the watch app<i class="i i-arrow-forward"></i></span></div>
+        <div class="viz viz-wrist">
+          <div class="watch"><div class="screen"><small>Bench Press</small><b>Set 4</b><span>190 lb &times; 8</span><i class="i i-checkmark"></i></div></div>
+          <div class="widget"><small>Today</small><b>Push Day</b><div class="meter"><i></i></div></div>
+        </div>
+      </a>
+    </div>
+    <p class="reveal" style="text-align:center;margin-top:44px"><a class="link" href={url('features/')}>Browse every feature<i class="i i-arrow-forward"></i></a></p>
+  </div>
+</section>

@@ -1,0 +1,42 @@
+---
+import Base from '../layouts/Base.astro';
+import SimpleHero from '../components/SimpleHero.astro';
+import Waitlist from '../components/Waitlist.astro';
+import { LINKS } from '../lib/config';
+const values = [
+  { icon: 'flash', c1: '#37A2FF', c2: '#0A62F0', title: 'Fast first', text: "If a feature slows down the set you're logging, it doesn't belong on that screen. Everything mid-workout is built for one thumb and a rest timer." },
+  { icon: 'checkmark-circle', c1: '#2FD0A0', c2: '#0E9CC8', title: 'You stay in charge', text: 'Plans arrive as drafts you approve. Coach suggestions wait for your Apply. Sharing is something you opt into, never something that happens to you.' },
+  { icon: 'lock-closed', c1: '#8B6CFF', c2: '#5B3BE8', title: 'Your data is yours', text: 'Export your whole history as a CSV, keep progress photos private, and delete your account whenever you like.' },
+  { icon: 'ribbon', c1: '#FFC857', c2: '#F08A0C', title: 'Honest pricing', text: 'One price for everything, a free trial to try it first, and a clear way to cancel. No feature walls, no surprises.' },
+];
+---
+<Base title="About" description="Lifty is made by Jumpy Dumpling, a one-person studio making small, useful apps. Here is what we care about.">
+  <SimpleHero kicker="About" title="Built by one small studio, for people who" accent="lift." lede="Lifty is made by Jumpy Dumpling, a one-person studio making small, useful apps." />
+  <section class="story-text">
+    <div class="wrap narrow">
+      <div class="prose reveal">
+        <p>Most workout apps land in one of two places. They are either too simple to teach you anything, or too complicated to use between sets. <strong>Lifty is our attempt at the space in between:</strong> fast enough for the gym floor, and smart enough to tell you what to do next.</p>
+        <p>That shaped everything. Logging is built around one thumb and a rest timer. Plans are drafts you approve before they exist. The coach suggests, and you decide when to apply. Friends are people you accept, and sharing is something you choose.</p>
+        <p>Lifty is made by Zac at Jumpy Dumpling, a small studio whose motto is <strong>Small apps. Big dreams.</strong> It is coming to iOS and Android soon, and the waitlist is the best way to hear first.</p>
+      </div>
+    </div>
+  </section>
+  <section class="values">
+    <div class="wrap">
+      <div class="head reveal"><span class="kicker">What we care about</span><h2>Our values<span class="grad">.</span></h2></div>
+      <div class="val-grid">
+        {values.map((v, i) => (
+          <article class="val spot reveal" style={`--d:${(i % 2) * 0.07}s`}>
+            <i class={`ico i i-${v.icon}`} style={`--c1:${v.c1};--c2:${v.c2}`}></i>
+            <div><h3>{v.title}</h3><p>{v.text}</p></div>
+          </article>
+        ))}
+      </div>
+      <div class="studio-card reveal">
+        <div style="position:relative;z-index:1"><h3>A Jumpy Dumpling app</h3><p>Jumpy Dumpling makes small, useful apps with a lot of care. Lifty is the biggest one yet.</p></div>
+        <a class="btn btn-light" style="position:relative;z-index:1" href={LINKS.studio}>Visit Jumpy Dumpling<i class="i i-arrow-forward"></i></a>
+      </div>
+    </div>
+  </section>
+  <Waitlist />
+</Base>

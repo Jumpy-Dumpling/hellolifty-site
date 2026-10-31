@@ -1,0 +1,26 @@
+---
+import Phone from './Phone.astro';
+import { url } from '../lib/url';
+import type { Feature } from '../data/features';
+interface Props { feature: Feature }
+const { feature: f } = Astro.props;
+---
+<section class="ph" style={`--c1:${f.c1};--c2:${f.c2}`}>
+  <div class="wrap ph-grid">
+    <div class="ph-copy">
+      <div class="crumbs"><a href={url('features/')}>Features</a><i class="i i-chevron-forward"></i><span>{f.name}</span></div>
+      <i class={`ico i i-${f.icon}`}></i>
+      <h1 class="hero-in" style="--i:1">{f.title}</h1>
+      <p class="lede hero-in" style="--i:2">{f.lede}</p>
+      <div class="ph-cta hero-in" style="--i:3">
+        <a class="btn btn-primary" href="#waitlist">Join the waitlist<i class="i i-arrow-forward"></i></a>
+        <a class="btn btn-ghost" href={url('pricing/')}>See pricing</a>
+      </div>
+    </div>
+    <div class={`ph-stage ${f.side ? '' : 'solo'}`} aria-hidden="true">
+      <div class="halo"></div>
+      <Phone class="p1" src={f.main} eager />
+      {f.side && <Phone class="p2" src={f.side} eager />}
+    </div>
+  </div>
+</section>

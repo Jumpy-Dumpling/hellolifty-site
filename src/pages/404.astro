@@ -1,0 +1,12 @@
+---
+import Base from '../layouts/Base.astro';
+import { url } from '../lib/url';
+---
+<Base title="Page not found" noindex bare>
+  <section class="nf">
+    <img src={url('logo.png')} alt="" width="84" height="87" />
+    <h1>Rest <span class="grad">day.</span></h1>
+    <p class="dim">That page isn't here. Let's get you back to the gym.</p>
+    <a class="btn btn-primary" href={url('')}>Back to Lifty</a>
+  </section>
+</Base>

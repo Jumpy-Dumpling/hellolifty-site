@@ -1,0 +1,17 @@
+---
+interface Props { source: string; variant?: 'hero' | 'cta' }
+const { source, variant = 'hero' } = Astro.props;
+---
+<form class:list={['wl', `wl-${variant}`]} data-waitlist data-source={source} novalidate>
+  <div class="wl-row">
+    <i class="i i-mail" aria-hidden="true"></i>
+    <input type="email" name="email" placeholder="Your email" autocomplete="email" inputmode="email" required aria-label="Email address" />
+    <button class="btn btn-primary" type="submit"><span class="lbl">Notify me</span><i class="i i-arrow-forward" aria-hidden="true"></i></button>
+  </div>
+  <div class="wl-plat" role="group" aria-label="Which phone do you use?">
+    <label class="chip"><input type="checkbox" name="platform" value="ios" /><span><i class="i i-logo-apple" aria-hidden="true"></i>iPhone</span></label>
+    <label class="chip"><input type="checkbox" name="platform" value="android" /><span><i class="i i-logo-google-playstore" aria-hidden="true"></i>Android</span></label>
+  </div>
+  <input class="hp" type="text" name="company" tabindex="-1" autocomplete="off" aria-hidden="true" />
+  <p class="wl-msg" role="status" aria-live="polite"></p>
+</form>

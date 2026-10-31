@@ -1,0 +1,14 @@
+---
+interface Props { kicker: string; title: string; accent?: string; lede?: string }
+const { kicker, title, accent, lede } = Astro.props;
+---
+<section class="ph ph-center">
+  <div class="wrap">
+    <div class="ph-copy">
+      <span class="kicker hero-in" style="--i:0">{kicker}</span>
+      <h1 class="hero-in" style="--i:1;margin-top:18px">{title} {accent && <span class="grad">{accent}</span>}</h1>
+      {lede && <p class="lede hero-in" style="--i:2;max-width:640px">{lede}</p>}
+      <slot />
+    </div>
+  </div>
+</section>

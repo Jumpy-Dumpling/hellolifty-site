@@ -1,0 +1,18 @@
+---
+import { features, bySlug } from '../data/features';
+import { url } from '../lib/url';
+interface Props { slugs: string[]; heading?: string }
+const { slugs, heading = 'More from Lifty' } = Astro.props;
+---
+<section class="rel">
+  <div class="wrap">
+    <div class="head reveal"><span class="kicker">Keep exploring</span><h2>{heading}<span class="grad">.</span></h2></div>
+    <div class="feat-grid rel-grid">
+      {slugs.map(bySlug).map((f, i) => (
+        <a class="fc spot reveal" href={url(`features/${f.slug}/`)} style={`--c1:${f.c1};--c2:${f.c2};--d:${i * 0.07}s`}>
+          <i class={`ico i i-${f.icon}`}></i><h3>{f.name}</h3><p>{f.menu}</p><span class="link">Learn more<i class="i i-arrow-forward"></i></span>
+        </a>
+      ))}
+    </div>
+  </div>
+</section>

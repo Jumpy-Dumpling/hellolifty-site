@@ -1,0 +1,77 @@
+---
+import { features } from '../data/features';
+import { url } from '../lib/url';
+const left = features.slice(0, 4);
+const right = features.slice(4);
+const path = Astro.url.pathname;
+const current = (p: string) => (path === p || path.startsWith(p) && p !== '/' ? 'current' : '');
+---
+<header class="nav" id="nav">
+  <div class="nav-wrap">
+    <div class="nav-bar">
+      <a class="brand" href={url('')} aria-label="Lifty home"><img src={url('logo.png')} alt="" width="28" height="29" /><span>Lifty</span></a>
+      <nav class="nav-links" aria-label="Main">
+        <button class={`nl ${current('/features/')}`} id="mega-btn" aria-expanded="false" aria-controls="mega">Features<i class="i i-chevron-down"></i></button>
+        <a class={`nl ${current('/pricing/')}`} href={url('pricing/')}>Pricing</a>
+        <a class={`nl ${current('/about/')}`} href={url('about/')}>About</a>
+        <a class={`nl ${current('/contact/')}`} href={url('contact/')}>Contact</a>
+      </nav>
+      <a class="btn btn-primary btn-sm" href="#waitlist" data-waitlist-link>Join the waitlist</a>
+      <button class="burger" id="burger" aria-label="Open menu" aria-expanded="false" aria-controls="drawer"><span></span></button>
+    </div>
+
+    <div class="mega" id="mega" role="region" aria-label="Features">
+      <div class="mega-panel">
+        <div class="mega-intro">
+          <small>Features</small>
+          <h3>Everything you need to train, in one place.</h3>
+          <p>Planning, logging, coaching, progress and your crew, working together.</p>
+          <a class="all" href={url('features/')}>See all features<i class="i i-arrow-forward"></i></a>
+        </div>
+        <div class="mega-col">
+          {left.map((f) => (
+            <a class="mi" href={url(`features/${f.slug}/`)} style={`--c1:${f.ink};--pastel:${f.pastel}`}>
+              <span class="mi-ico"><i class={`i i-${f.icon}`}></i></span>
+              <span><b>{f.name}</b><small>{f.menu}</small></span>
+            </a>
+          ))}
+        </div>
+        <div class="mega-col">
+          {right.map((f) => (
+            <a class="mi" href={url(`features/${f.slug}/`)} style={`--c1:${f.ink};--pastel:${f.pastel}`}>
+              <span class="mi-ico"><i class={`i i-${f.icon}`}></i></span>
+              <span><b>{f.name}</b><small>{f.menu}</small></span>
+            </a>
+          ))}
+        </div>
+        <a class="mega-promo" href="#waitlist">
+          <span class="tag">Coming soon</span>
+          <h4>Lifty is almost here.</h4>
+          <p>Coming to iOS and Android. Be first in line.</p>
+          <span class="link">Join the waitlist<i class="i i-arrow-forward"></i></span>
+          <span class="promo-phone"><img src={url('screens/today.webp')} alt="" width="780" height="1688" loading="lazy" /></span>
+        </a>
+      </div>
+    </div>
+  </div>
+  <i class="progress" id="progress"></i>
+</header>
+
+<div class="drawer" id="drawer" aria-hidden="true">
+  <details>
+    <summary>Features<i class="i i-chevron-down"></i></summary>
+    <div class="sub">
+      {features.map((f) => (
+        <a class="mi" href={url(`features/${f.slug}/`)} style={`--c1:${f.ink};--pastel:${f.pastel}`}>
+          <span class="mi-ico"><i class={`i i-${f.icon}`}></i></span>
+          <span><b>{f.name}</b><small>{f.menu}</small></span>
+        </a>
+      ))}
+      <a class="mi" href={url('features/')}><span class="mi-ico" style="--c1:#0A7AFF;--pastel:#E3F0FF"><i class="i i-apps"></i></span><span><b>All features</b></span></a>
+    </div>
+  </details>
+  <a class="row" href={url('pricing/')}>Pricing</a>
+  <a class="row" href={url('about/')}>About</a>
+  <a class="row" href={url('contact/')}>Contact</a>
+  <a class="btn btn-primary" href="#waitlist">Join the waitlist</a>
+</div>

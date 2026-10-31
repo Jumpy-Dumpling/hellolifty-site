@@ -1,0 +1,11 @@
+---
+import { url } from '../lib/url';
+interface Props { src: string; alt?: string; class?: string; eager?: boolean; [key: string]: unknown }
+const { src, alt = '', class: cls = '', eager = false, ...rest } = Astro.props;
+---
+<figure class:list={['phone', cls]} {...rest}>
+  <div class="phone-body">
+    <img src={url(`screens/${src}.webp`)} alt={alt} width="780" height="1688" loading={eager ? 'eager' : 'lazy'} decoding="async" />
+  </div>
+  <i class="phone-glare"></i>
+</figure>

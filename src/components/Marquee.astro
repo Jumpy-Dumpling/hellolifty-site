@@ -1,0 +1,16 @@
+---
+const items: [string, string][] = [
+  ['sparkles', 'AI-built plans'], ['pulse', 'Adaptive coach'], ['timer', 'Rest timer'], ['calculator', 'Plate calculator'], ['trophy', 'Record tracking'],
+  ['people', 'Friends and challenges'], ['film', 'Lifty Studio'], ['watch', 'Apple Watch'], ['stats-chart', 'Volume analytics'], ['cloud-upload', 'Strong and Hevy import'],
+  ['body', 'Body measurements'], ['camera', 'Progress photos'], ['flame', 'Weekly streaks'], ['flash', 'Supersets'],
+];
+---
+<section class="marquee" aria-label="Highlights" id="intro">
+  <div class="track">
+    {[0, 1].map((n) => (
+      <ul aria-hidden={n === 1 ? 'true' : undefined}>
+        {items.map(([icon, label]) => <li><i class={`i i-${icon}`}></i>{label}</li>)}
+      </ul>
+    ))}
+  </div>
+</section>

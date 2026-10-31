@@ -1,0 +1,38 @@
+/* Lifty's own palette (src/theme.ts in the app): sky highlight, electric blue, deep navy, on a cool white canvas. */
+@property --a { syntax: '<angle>'; inherits: false; initial-value: 0deg; }
+
+:root {
+  --bg: #F3F6FC;
+  --bg-2: #EAF0FB;
+  --surface: #FFFFFF;
+  --text: #0A1A33;
+  --dim: #56677F;
+  --faint: #8795AB;
+  --line: #E3EAF6;
+  --line-2: #D2DDF0;
+
+  --blue: #0A7AFF;
+  --blue-2: #2E9BFF;
+  --deep: #0B4FD6;
+  --navy: #0B1B44;
+  --sky: #5CC8FF;
+  --violet: #7C5CFF;
+  --gold: #F5A524;
+  --mint: #2DBE7B;
+  --rose: #EE3F5A;
+
+  --soft: rgba(10, 122, 255, .09);
+  --soft-line: rgba(10, 122, 255, .28);
+  --grad: linear-gradient(135deg, #37A2FF, #0A62F0);
+  --hero: linear-gradient(145deg, #2E9BFF 0%, #0A5CE8 46%, #0B3FB8 100%);
+  --grad-text: linear-gradient(100deg, #0A7AFF 0%, #5CC8FF 32%, #7C5CFF 62%, #0A7AFF 100%);
+  --glow: 0 10px 30px rgba(10, 98, 240, .34);
+  --shadow: 0 1px 2px rgba(27, 58, 120, .05), 0 10px 32px rgba(27, 58, 120, .08);
+  --shadow-lg: 0 30px 70px -18px rgba(27, 58, 120, .28), 0 4px 14px rgba(27, 58, 120, .06);
+
+  --r-sm: 14px; --r-md: 22px; --r-lg: 30px; --r-xl: 40px;
+  --ease: cubic-bezier(.22, .8, .2, 1);
+  --spring: cubic-bezier(.34, 1.56, .64, 1);
+  --font: 'Plus Jakarta Sans Variable', 'Plus Jakarta Sans', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --wrap: 1200px;
+}

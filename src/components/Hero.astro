@@ -1,0 +1,32 @@
+---
+import Phone from './Phone.astro';
+import WaitlistForm from './WaitlistForm.astro';
+const words = ['Train', 'like', 'it', 'matters.'];
+---
+<section class="hero" id="top" data-hero>
+  <div class="wrap hero-grid">
+    <div class="hero-copy">
+      <span class="pill hero-in" style="--i:0"><i class="dot"></i>Coming soon to iOS and Android</span>
+      <h1 class="headline" aria-label="Train like it matters.">
+        {words.map((w, i) => <span class="w" style={`--i:${i + 1}`} aria-hidden="true"><span class={i === 3 ? 'grad' : ''}>{w}</span></span>)}
+      </h1>
+      <p class="lede hero-in" style="--i:5">Lifty builds your plan, logs every set in seconds, and coaches you as you get stronger. Friends, challenges and a video studio, in one beautifully fast app.</p>
+      <div class="hero-in" style="--i:6"><WaitlistForm source="hero" variant="hero" /></div>
+      <ul class="hero-proof hero-in" style="--i:7">
+        <li><i class="i i-checkmark-circle"></i>7-day free trial</li>
+        <li><i class="i i-checkmark-circle"></i>Works offline</li>
+        <li><i class="i i-checkmark-circle"></i>Apple Watch app</li>
+      </ul>
+    </div>
+
+    <div class="hero-stage" data-stage aria-hidden="true">
+      <div class="stage-ring r1"></div><div class="stage-ring r2"></div><div class="stage-halo"></div>
+      <div class="depth d1"><Phone class="ph-side" src="workout" eager /></div>
+      <div class="depth d2"><Phone class="ph-main" src="today" eager /></div>
+      <div class="depth d4 chip-wrap c1"><div class="fchip"><i class="i i-trophy gold"></i><div><b>New record</b><span>Bench Press &middot; 190 lb &times; 9</span></div></div></div>
+      <div class="depth d4 chip-wrap c2"><div class="fchip"><i class="i i-flame blue"></i><div><b>6-week streak</b><span>Right on goal</span></div></div></div>
+      <div class="depth d4 chip-wrap c3"><div class="fchip"><i class="i i-sparkles violet"></i><div><b>Coach note</b><span>Add 5 lb to Bench Press</span></div></div></div>
+    </div>
+  </div>
+  <a class="scroll-cue" href="#intro" aria-label="Scroll to learn more"><i class="i i-chevron-down"></i></a>
+</section>

@@ -1,0 +1,37 @@
+---
+import Phone from './Phone.astro';
+import type { Feature } from '../data/features';
+interface Props { feature: Feature }
+const { feature: f } = Astro.props;
+---
+<section class="split" style={`--c1:${f.c1};--c2:${f.c2}`}>
+  <div class="wrap">
+    {f.sections.map((s, i) => (
+      <div class={`split-row reveal ${i % 2 ? 'flip' : ''}`} style="padding:50px 0">
+        <div class="split-copy">
+          <span class="kicker">{s.kicker}</span>
+          <h2>{s.title}</h2>
+          <p class="dim">{s.body}</p>
+          <ul class="ticks">{s.ticks.map((t) => <li><i class="i i-checkmark-circle"></i>{t}</li>)}</ul>
+        </div>
+        <div class="split-shot">
+          {s.screen && <Phone src={s.screen} alt="" />}
+          {s.visual === 'watch' && (
+            <div class="gizmo">
+              <div class="watch"><div class="screen"><small>Bench Press</small><b>Set 4</b><span>190 lb &times; 8</span><i class="i i-checkmark"></i></div></div>
+              <div class="widget"><small>Today</small><b>Push Day</b><div class="meter"><i></i></div></div>
+            </div>
+          )}
+          {s.visual === 'lock' && (
+            <div class="gizmo">
+              <div class="lock">
+                <div class="time">9:41</div><div class="date">Monday, March 9</div>
+                <div class="live"><div class="top"><span>Push Day</span><span>32:18</span></div><small>Barbell Bench Press &middot; Set 4 of 5</small><div class="meter"><i></i></div></div>
+              </div>
+            </div>
+          )}
+        </div>
+      </div>
+    ))}
+  </div>
+</section>

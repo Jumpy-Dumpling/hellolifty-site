@@ -1,0 +1,45 @@
+---
+interface Props { bare?: boolean }
+const { bare = false } = Astro.props;
+import { PRICE_MONTHLY, PRICE_YEARLY, PRICE_LIFETIME, YEARLY_PER_MONTH, YEARLY_SAVINGS_PERCENT, TRIAL_DAYS, REFERRAL_TRIAL_DAYS } from '../lib/config';
+---
+<section class="pricing" id="pricing" style={bare ? "padding-top:30px" : undefined}>
+  <div class="wrap">
+    {!bare && <div class="head reveal">
+      <span class="kicker">Pricing</span>
+      <h2>Try everything free for <span class="grad">{TRIAL_DAYS} days.</span></h2>
+      <p>One plan, everything included. Pick monthly or yearly, or pay once and own it.</p>
+    </div>}
+
+    <div class="plans">
+      <article class="plan spot reveal">
+        <h3>Monthly</h3>
+        <div class="price"><b>{PRICE_MONTHLY}</b><span>/ month</span></div>
+        <p class="sub">{TRIAL_DAYS} days free, then billed monthly.</p>
+        <ul><li><i class="i i-checkmark"></i>Everything in Lifty</li><li><i class="i i-checkmark"></i>Cancel any time</li></ul>
+      </article>
+
+      <article class="plan best edge reveal" style="--d:.08s">
+        <span class="badge">Save {YEARLY_SAVINGS_PERCENT}%</span>
+        <h3>Yearly</h3>
+        <div class="price"><b>{PRICE_YEARLY}</b><span>/ year</span></div>
+        <p class="sub">Just {YEARLY_PER_MONTH} a month. {TRIAL_DAYS} days free first.</p>
+        <ul><li><i class="i i-checkmark"></i>Everything in Lifty</li><li><i class="i i-checkmark"></i>Cancel any time</li><li><i class="i i-checkmark"></i>Best value for regulars</li></ul>
+      </article>
+
+      <article class="plan gold spot reveal" style="--d:.16s">
+        <span class="badge gold">Limited time</span>
+        <h3>Lifetime</h3>
+        <div class="price"><b>{PRICE_LIFETIME}</b><span>once</span></div>
+        <p class="sub">Pay once, yours forever.</p>
+        <ul><li><i class="i i-checkmark"></i>Everything in Lifty, for good</li><li><i class="i i-checkmark"></i>A Lifty starter pack: tank or tee, gym socks and a drawstring bag</li></ul>
+      </article>
+    </div>
+
+    <div class="perks">
+      <div class="perk spot reveal"><i class="ico i i-gift" style="--c1:#FF9A4D;--c2:#EE3F5A"></i><div><h4>Invited by a friend?</h4><p>Sign up with a friend's code and your free trial is {REFERRAL_TRIAL_DAYS} days, not {TRIAL_DAYS}.</p></div></div>
+      <div class="perk spot reveal" style="--d:.08s"><i class="ico i i-shirt" style="--c1:#37A2FF;--c2:#0A62F0"></i><div><h4>Bring your crew, earn a shirt</h4><p>When 3 friends you invite subscribe and stick around, we send you a Lifty tank or tee.</p></div></div>
+    </div>
+    <p class="fine reveal">Prices in US dollars, billed through the App Store or Google Play, and may change before launch. Subscriptions renew until canceled.</p>
+  </div>
+</section>

@@ -1,0 +1,11 @@
+---
+const text = 'Lifty plans the work, keeps the score, and keeps you coming back. So all you have to do is lift.';
+const words = text.split(' ');
+---
+<section class="scrub" aria-label="What Lifty does">
+  <div class="wrap narrow">
+    <p class="scrub-text" data-scrub aria-label={text}>
+      {words.map((w) => <span class="sw" aria-hidden="true">{w} </span>)}
+    </p>
+  </div>
+</section>

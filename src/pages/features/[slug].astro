@@ -1,0 +1,24 @@
+---
+import Base from '../../layouts/Base.astro';
+import PageHero from '../../components/PageHero.astro';
+import Highlights from '../../components/Highlights.astro';
+import Splits from '../../components/Splits.astro';
+import Related from '../../components/Related.astro';
+import Faq from '../../components/Faq.astro';
+import Waitlist from '../../components/Waitlist.astro';
+import { features } from '../../data/features';
+
+export function getStaticPaths() {
+  return features.map((feature) => ({ params: { slug: feature.slug }, props: { feature } }));
+}
+const { feature } = Astro.props;
+const jsonLd = [{ '@type': 'WebPage', name: `${feature.name} | Lifty`, description: feature.lede, isPartOf: { '@type': 'WebSite', name: 'Lifty', url: 'https://hellolifty.com/' } }];
+---
+<Base title={feature.name} description={feature.lede} jsonLd={jsonLd}>
+  <PageHero feature={feature} />
+  <Highlights feature={feature} />
+  <Splits feature={feature} />
+  <Related slugs={feature.related} />
+  <Waitlist />
+  <Faq items={feature.faq} title={`${feature.name}: good to`} />
+</Base>

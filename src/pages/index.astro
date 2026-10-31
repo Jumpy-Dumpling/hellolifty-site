@@ -1,0 +1,29 @@
+---
+import Base from '../layouts/Base.astro';
+import Hero from '../components/Hero.astro';
+import Marquee from '../components/Marquee.astro';
+import Scrub from '../components/Scrub.astro';
+import Story from '../components/Story.astro';
+import Bento from '../components/Bento.astro';
+import Pricing from '../components/Pricing.astro';
+import Waitlist from '../components/Waitlist.astro';
+import Faq from '../components/Faq.astro';
+
+const jsonLd = [
+  {
+    '@type': 'SoftwareApplication', name: 'Lifty', applicationCategory: 'HealthApplication', operatingSystem: 'iOS, Android',
+    description: 'Strength training app with personalized plans, fast set logging, an adaptive coach, friends and challenges, and a video studio.',
+    url: 'https://hellolifty.com/', publisher: { '@type': 'Organization', name: 'Jumpy Dumpling', url: 'https://www.jumpydumpling.com' },
+  },
+];
+---
+<Base jsonLd={jsonLd}>
+  <Hero />
+  <Marquee />
+  <Scrub />
+  <Story />
+  <Bento />
+  <Pricing />
+  <Waitlist />
+  <Faq />
+</Base>
