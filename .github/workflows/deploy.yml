@@ -24,13 +24,13 @@ jobs:
           node-version: 22
           cache: npm
       - run: npm ci
-      - id: pages
-        uses: actions/configure-pages@v5
+      - uses: actions/configure-pages@v5
+      # No SITE_URL or BASE_PATH here on purpose. GitHub reports a custom domain as http:// until HTTPS is enforced, and that leaked
+      # into the sitemap and every canonical and social tag. The site address is fixed in astro.config.mjs.
       - name: Build
-        run: |
-          export SITE_URL="$(node -e "console.log(new URL('${{ steps.pages.outputs.base_url }}').origin)")"
-          export BASE_PATH="$(node -e "console.log(new URL('${{ steps.pages.outputs.base_url }}').pathname)")"
-          npm run build
+        run: npm run build
+      - name: Check SEO tags, sitemap and share images
+        run: npm run seo
       - uses: actions/upload-pages-artifact@v3
         with:
           path: dist

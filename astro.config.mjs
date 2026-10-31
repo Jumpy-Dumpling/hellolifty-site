@@ -2,13 +2,13 @@
 import { defineConfig } from 'astro/config';
 import sitemap from '@astrojs/sitemap';
 
-// hellolifty.com is a custom domain served from the root of GitHub Pages, so these are fixed. The deploy workflow may still set
-// SITE_URL and BASE_PATH (same as the Jumpy Dumpling site); without them the canonical address is used, never localhost.
+// hellolifty.com is a custom domain served from the root of GitHub Pages, so the address is fixed here: always https, never localhost,
+// and never taken from the environment (GitHub Pages reports http:// for a custom domain until HTTPS is enforced).
 const lastmod = new Date().toISOString();
 
 export default defineConfig({
-  site: process.env.SITE_URL ?? 'https://hellolifty.com',
-  base: process.env.BASE_PATH ?? '/',
+  site: 'https://hellolifty.com',
+  base: '/',
   trailingSlash: 'always',
   integrations: [
     sitemap({

@@ -32,6 +32,7 @@ for (const file of pages.sort()) {
   if (!canonical?.startsWith(SITE)) fail(rel, `canonical is ${canonical}`);
   else if (!is404 && canonical !== SITE + rel) fail(rel, `canonical ${canonical} does not match the page address`);
   if (/localhost|127\.0\.0\.1/.test(html)) fail(rel, 'mentions localhost');
+  if (/http:\/\/(www\.)?hellolifty\.com/.test(html)) fail(rel, 'links to the site over http:// instead of https://');
 
   if (!is404) {
     for (const k of ['og:title', 'og:description', 'og:url', 'og:image', 'og:image:width', 'og:image:height', 'og:image:alt', 'og:type', 'og:site_name', 'twitter:card', 'twitter:title', 'twitter:description', 'twitter:image', 'twitter:image:alt']) if (!meta(html, k)) fail(rel, `missing ${k}`);
@@ -82,6 +83,7 @@ for (const file of pages.sort()) {
 for (const [map, label] of [[seenTitles, 'title'], [seenDescriptions, 'description']]) for (const [v, where] of map) if (where.length > 1) warn(where.join(', '), `share the same ${label}: "${v.slice(0, 50)}"`);
 
 console.log('\nFiles crawlers look for:');
+for (const f of ['sitemap-index.xml', 'sitemap-0.xml', 'robots.txt', 'llms.txt', 'llms-full.txt']) if (existsSync(join(dist, f)) && /http:\/\/(www\.)?hellolifty\.com/.test(readFileSync(join(dist, f), 'utf8'))) fail(f, 'contains an http:// address for the site');
 const must = ['robots.txt', 'sitemap-index.xml', 'sitemap-0.xml', 'llms.txt', 'llms-full.txt', 'site.webmanifest', 'favicon.ico', 'favicon.png', 'apple-touch-icon.png', 'icon-192.png', 'icon-512.png', 'CNAME'];
 for (const f of must) { const ok = existsSync(join(dist, f)); console.log(`  ${ok ? 'ok  ' : 'FAIL'} /${f}`); if (!ok) failures++; }
 if (existsSync(join(dist, 'robots.txt'))) { const r = readFileSync(join(dist, 'robots.txt'), 'utf8'); if (!/Sitemap: https:\/\/hellolifty\.com\//.test(r)) fail('robots.txt', 'no sitemap line'); if (/Disallow: \//.test(r)) fail('robots.txt', 'blocks crawlers'); }
@@ -89,6 +91,7 @@ if (existsSync(join(dist, 'sitemap-0.xml'))) {
   const sm = readFileSync(join(dist, 'sitemap-0.xml'), 'utf8');
   const urls = [...sm.matchAll(/<loc>([^<]*)<\/loc>/g)].map((m) => m[1]);
   console.log(`  sitemap lists ${urls.length} pages`);
+  if (urls.some((u) => !u.startsWith('https://'))) fail('sitemap', `has non-https addresses: ${urls.filter((u) => !u.startsWith('https://')).join(', ')}`);
   for (const f of pages) { const rel = f.slice(dist.length).replace(/index\.html$/, '') || '/'; if (rel === '/404.html') continue; if (!urls.includes(SITE + rel)) fail('sitemap', `missing ${rel}`); }
   if (urls.some((u) => u.includes('404'))) fail('sitemap', 'lists the 404 page');
   if (!/<lastmod>/.test(sm)) warn('sitemap', 'no lastmod dates');
