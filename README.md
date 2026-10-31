@@ -12,6 +12,9 @@ The Lifty marketing site. It is an [Astro](https://astro.build) static site host
 | `/pricing/` | Plans, what is included, how the trial works, billing FAQ |
 | `/about/` | The story and values |
 | `/contact/` | A contact form (messages land in your Supabase database) |
+| `/privacy/`, `/terms/` | The privacy policy and terms of use for the app and site (`src/pages/privacy.astro`, `terms.astro`, on the `LegalPage` component) |
+
+**Analytics and cookie consent.** Google Analytics (`GA_ID` in `src/lib/consent.ts`) loads only after consent: automatically outside the EU, EEA, UK and Switzerland, after the visitor taps Accept inside them (the region is guessed from the browser's time zone, and an unreadable one counts as inside), and never when the browser sends Global Privacy Control. The footer's Cookie settings reopen the choice for everyone. Logic: `src/lib/consent.ts` (rules) and `src/scripts/consent.ts` (banner and loading). When you add another tool that sets cookies, load it from the same place.
 
 The **Features mega menu** in the nav is built from the same list as the deep-dive pages, so adding a feature to `src/data/features.ts` adds it to the menu,
 the features index, the footer and its own page.

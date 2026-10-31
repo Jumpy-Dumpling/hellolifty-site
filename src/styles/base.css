@@ -151,3 +151,12 @@ h2 { font-size: clamp(34px, 4.8vw, 60px); }
   .reveal { opacity: 1; transform: none; filter: none; transition: none; }
   .grad, .dot, .edge::before, .bg-a, .bg-b { animation: none; }
 }
+
+/* ---------- cookie consent ---------- */
+.foot-link { all: unset; cursor: pointer; font-weight: 600; font-size: 15px; color: rgba(255,255,255,.82); transition: color .2s; } .foot-link:hover { color: #fff; } .foot-link:focus-visible { outline: 2px solid var(--sky); outline-offset: 3px; border-radius: 4px; }
+.consent { position: fixed; z-index: 95; left: 16px; right: 16px; bottom: 16px; max-width: 760px; margin: 0 auto; display: flex; align-items: center; gap: 18px; padding: 18px 20px; border-radius: 22px; background: rgba(255,255,255,.96); backdrop-filter: blur(18px); border: 1px solid var(--line-2); box-shadow: 0 24px 60px -16px rgba(27,58,120,.35); }
+.consent[hidden] { display: none; }
+.consent-body { flex: 1; font-size: 14px; line-height: 1.5; color: var(--dim); } .consent-body a { color: var(--blue); font-weight: 700; } .consent-body b { color: var(--text); }
+.consent-title { font-weight: 800; font-size: 15px; color: var(--text); margin-bottom: 2px; }
+.consent-actions { display: flex; gap: 10px; flex-shrink: 0; }
+@media (max-width: 640px) { .consent { flex-direction: column; align-items: stretch; gap: 14px; } .consent-actions .btn { flex: 1; } }

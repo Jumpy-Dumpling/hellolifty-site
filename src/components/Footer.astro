@@ -14,7 +14,7 @@ const year = new Date().getFullYear();
       </div>
       <div><p class="foot-title">Features</p><ul>{features.slice(0, 5).map((f) => <li><a href={url(`features/${f.slug}/`)}>{f.name}</a></li>)}</ul></div>
       <div><p class="foot-title">&nbsp;</p><ul>{features.slice(5).map((f) => <li><a href={url(`features/${f.slug}/`)}>{f.name}</a></li>)}<li><a href={url('features/')}>All features</a></li></ul></div>
-      <div><p class="foot-title">Company</p><ul><li><a href={url('pricing/')}>Pricing</a></li><li><a href={url('about/')}>About</a></li><li><a href={url('contact/')}>Contact</a></li><li><a href={LINKS.terms}>Terms</a></li><li><a href={LINKS.privacy}>Privacy</a></li></ul></div>
+      <div><p class="foot-title">Company</p><ul><li><a href={url('pricing/')}>Pricing</a></li><li><a href={url('about/')}>About</a></li><li><a href={url('contact/')}>Contact</a></li><li><a href={LINKS.terms}>Terms</a></li><li><a href={LINKS.privacy}>Privacy</a></li><li><button type="button" class="foot-link" data-cookie-settings>Cookie settings</button></li></ul></div>
     </div>
     <div class="foot-base"><span>&copy; {year} Jumpy Dumpling. Lifty is an app by <a href={LINKS.studio} style="color:#fff;font-weight:700">Jumpy Dumpling</a>.</span><span>Small apps. Big dreams.</span></div>
   </div>

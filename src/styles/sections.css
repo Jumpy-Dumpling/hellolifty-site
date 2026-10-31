@@ -184,6 +184,7 @@
 .plan.best { background: var(--hero); color: #fff; border-color: transparent; transform: translateY(-16px); box-shadow: 0 40px 90px -24px rgba(10,98,240,.7); }
 .plan.best:hover { transform: translateY(-24px); }
 .plan.best h3, .plan.best .price b { color: #fff; }
+.plan.spot { overflow: visible; } /* the badge sits above the card's top edge; the hover glow already follows the rounded corners */
 .plan.gold { border-color: rgba(245,165,36,.5); background: linear-gradient(180deg, #FFF9EC, #fff 60%); }
 .plan h3 { font-size: 21px; letter-spacing: -.02em; }
 .price { display: flex; align-items: baseline; gap: 8px; margin-top: 16px; }

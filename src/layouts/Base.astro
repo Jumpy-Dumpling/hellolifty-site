@@ -7,6 +7,7 @@ import '../styles/sections.css';
 import '../styles/pages.css';
 import Nav from '../components/Nav.astro';
 import Footer from '../components/Footer.astro';
+import CookieConsent from '../components/CookieConsent.astro';
 import { url } from '../lib/url';
 import iconFont from '../assets/fonts/ionicons.woff2?url';
 import { absolute, baseGraph, DEFAULT_OG, SITE_DESCRIPTION, SITE_NAME, SITE_TITLE, TAGLINE } from '../lib/seo';
@@ -40,12 +41,6 @@ const graph = { '@context': 'https://schema.org', '@graph': [...baseGraph(Astro.
     <meta name="description" content={description} />
     <meta name="robots" content={noindex ? 'noindex, nofollow' : 'index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1'} />
     <link rel="canonical" href={canonical} />
-    <meta name="author" content="Jumpy Dumpling" />
-    <meta name="application-name" content={SITE_NAME} />
-    <meta name="apple-mobile-web-app-title" content={SITE_NAME} />
-    <meta name="format-detection" content="telephone=no" />
-    <meta name="theme-color" content="#F3F6FC" />
-    <meta name="color-scheme" content="light" />
 
     <link rel="icon" href={url('favicon.ico')} sizes="48x48" />
     <link rel="icon" type="image/png" href={url('favicon.png')} sizes="32x32" />
@@ -84,7 +79,9 @@ const graph = { '@context': 'https://schema.org', '@graph': [...baseGraph(Astro.
     {!bare && <Nav />}
     <main id="main"><slot /></main>
     {!bare && <Footer />}
+    <CookieConsent />
     <script>
+      import '../scripts/consent';
       import '../scripts/fx';
       import '../scripts/forms';
       import '../scripts/nav';

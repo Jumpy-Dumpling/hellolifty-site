@@ -1,0 +1,84 @@
+---
+import LegalPage from '../components/LegalPage.astro';
+import { url } from '../lib/url';
+import { PRICE_LIFETIME, PRICE_MONTHLY, PRICE_YEARLY, REFERRAL_TRIAL_DAYS, TRIAL_DAYS } from '../lib/config';
+
+const sections = [
+  { id: 'agreement', title: 'Agreeing to these terms' },
+  { id: 'account', title: 'Your account' },
+  { id: 'plans', title: 'Subscriptions, trial and Lifetime' },
+  { id: 'pack', title: 'Starter pack and rewards' },
+  { id: 'health', title: 'Health and safety' },
+  { id: 'content', title: 'Your content and community' },
+  { id: 'rules', title: 'Rules of the road' },
+  { id: 'ours', title: 'What belongs to us' },
+  { id: 'ending', title: 'Ending your account' },
+  { id: 'warranty', title: 'No warranty' },
+  { id: 'liability', title: 'Limits on liability' },
+  { id: 'law', title: 'Governing law and disputes' },
+  { id: 'changes', title: 'Changes and contact' },
+];
+---
+<LegalPage kicker="Legal" title="Terms of use" lede="The ground rules for using Lifty. Plain language, because you have a workout to get to."
+  seoTitle="Lifty Terms of Use: Plans, Trial and Your Account" description="The terms for using the Lifty app and hellolifty.com: accounts, subscriptions, the free trial, Lifetime, the starter pack, safety and your content."
+  path="terms/" updated="October 31, 2026" sections={sections}>
+
+  <p>These terms are an agreement between you and Jumpy Dumpling ("we", "us") about the Lifty app (iPhone and Apple Watch) and this website. Please read them along with our <a href={url('privacy/')}>Privacy Policy</a>.</p>
+
+  <h2 id="agreement">1. Agreeing to these terms</h2>
+  <p>By creating an account or using Lifty, you agree to these terms. If you do not agree, do not use Lifty. You must be at least 13 years old (or older if your country requires it) to use Lifty. If you are under 18, you need a parent or guardian's permission, and they are responsible for your use of Lifty and any purchases.</p>
+
+  <h2 id="account">2. Your account</h2>
+  <p>You need an account to use Lifty. Give us accurate information, keep your sign-in details safe, and tell us if you think someone else has your account. You are responsible for what happens under your account. One person per account, please.</p>
+
+  <h2 id="plans">3. Subscriptions, trial and Lifetime</h2>
+  <p>Lifty has no free tier. Every plan includes all of Lifty, and you choose how to pay:</p>
+  <ul>
+    <li><strong>Monthly</strong>, {PRICE_MONTHLY} a month, or <strong>Yearly</strong>, {PRICE_YEARLY} a year, each starting with a {TRIAL_DAYS}-day free trial ({REFERRAL_TRIAL_DAYS} days if a friend invited you with their code).</li>
+    <li><strong>Lifetime</strong>, {PRICE_LIFETIME} once, for access that does not expire. Lifetime is a limited-time offer that we can change or stop offering at any time. People who already bought it keep it.</li>
+  </ul>
+  <p>Prices are in US dollars and may differ by country and be shown in your local currency. Taxes may apply.</p>
+  <p><strong>How billing works.</strong> Purchases are made through your Apple ID and are handled entirely by Apple, under Apple's terms. After a free trial your subscription starts automatically and renews each month or year at the price shown, until you cancel. To avoid being charged, cancel at least 24 hours before the trial or the current period ends. Manage or cancel any time in your Apple ID subscription settings (Settings, your name, Subscriptions). Deleting the app does not cancel a subscription. Refunds are decided by Apple, so request them from Apple. We may change prices for future periods and will give you notice where the law or Apple requires it.</p>
+
+  <h2 id="pack">4. Starter pack and rewards</h2>
+  <p><strong>Starter pack.</strong> A Lifetime purchase includes a Lifty starter pack: a tank or T-shirt (your choice), gym socks and a drawstring bag. The pack unlocks 30 days after you buy. It helps protect accounts from misuse and fraud. Once it unlocks, you will find the tracker in Settings, where you choose a tank or T-shirt and your size, enter your mailing address, and request it. You can then follow it from requested to shipped. You are responsible for entering a correct address. We may limit the pack to one per account, to places we can ship to, and to purchases that were completed and not refunded or reversed. If a Lifetime purchase is refunded before the pack ships, we may cancel the pack.</p>
+  <p><strong>Referral reward.</strong> When three friends you invited have subscribed and paid for at least 60 days, you can claim a Lifty shirt. Free trials, promo codes and lifetime codes do not count, and we may withhold rewards for self-referral, fake accounts or other abuse.</p>
+  <p><strong>Promo codes</strong> have no cash value, cannot be sold, and may be limited or ended by us. Items are subject to availability, and shipping times are estimates.</p>
+
+  <h2 id="health">5. Health and safety</h2>
+  <p>Lifty is a training log and planning tool. It is <strong>not medical advice</strong>, and nothing in it, including AI-written plans, coach notes, suggested weights or glossary explanations, is a substitute for a doctor, physical therapist or qualified coach. Talk to a physician before you start or change an exercise program, especially if you are pregnant, injured, have a health condition, or have not trained in a while. Strength training carries a risk of injury. You choose what you do, use judgment about weights and form, stop if something hurts, and train at your own risk. Heart rate and other numbers from your watch or phone can be inaccurate and are not for medical use.</p>
+
+  <h2 id="content">6. Your content and community</h2>
+  <p>You keep ownership of what you put into Lifty: your training, notes, photos, videos, posts, comments and custom exercises. You give us a limited license to store, process, copy and display it as needed to run Lifty and to show it to the people you chose to share it with, for example your friends, a challenge board, or the shared exercise library. The license ends when you delete the content or your account, except for copies that other people were already allowed to keep (such as a comment that was quoted) and short-term backups.</p>
+  <p>You promise that you have the right to post what you share and that it does not break the law or anyone's rights. If you share a custom exercise or challenge with everyone, other people may use it. Do not post anyone's private information, or photos or videos of others without their permission.</p>
+
+  <h2 id="rules">7. Rules of the road</h2>
+  <p>Please do not:</p>
+  <ul>
+    <li>harass, threaten, impersonate or spam other people, or post anything hateful, sexually explicit, violent or illegal;</li>
+    <li>cheat on challenges or leaderboards, or create fake accounts or referrals;</li>
+    <li>break, probe, overload or reverse-engineer Lifty, or get around its limits (for example, the monthly AI allowance), or use scrapers or bots;</li>
+    <li>use Lifty to build a competing product, or resell or share your access with others;</li>
+    <li>use the AI features to make anything harmful, or try to make them ignore their instructions.</li>
+  </ul>
+  <p>You can report a post, comment or exercise, and block anyone, from inside the app. We may remove content and limit or end accounts that break these rules, and we try to be fair about it.</p>
+
+  <h2 id="ours">8. What belongs to us</h2>
+  <p>Lifty, its design, code, name, logo and our own text and artwork belong to Jumpy Dumpling and are protected by law. We give you a personal, limited, non-transferable license to use the app on your own devices while you follow these terms. Some content in Lifty comes from others and is credited, with its license, in Settings, then Credits. Feedback and ideas you send us can be used by us without payment or obligation.</p>
+
+  <h2 id="ending">9. Ending your account</h2>
+  <p>You can stop using Lifty or delete your account in the app at any time (Settings, then Delete account). Deleting your account does not cancel a subscription: cancel that with Apple first. We may suspend or end your access if you break these terms, if the law requires it, or if we stop offering Lifty, and we will give notice where we reasonably can. Sections that by their nature should survive, such as ownership, disclaimers, liability and disputes, continue after your account ends.</p>
+
+  <h2 id="warranty">10. No warranty</h2>
+  <p>Lifty is provided "as is" and "as available". To the fullest extent the law allows, we do not promise that it will be uninterrupted, error-free or secure, that suggestions or AI output will be accurate or suitable for you, or that you will reach any particular result. Features can change, and some depend on services we do not control, such as Apple's. Challenge boards are for friendly competition and are not tamper-proof. Some places do not allow these exclusions, so some may not apply to you.</p>
+
+  <h2 id="liability">11. Limits on liability</h2>
+  <p>To the fullest extent the law allows, we are not liable for indirect, incidental, special, consequential or punitive damages, or for lost data, profits or goodwill, or for injuries from your workouts, arising from your use of Lifty. Our total liability for any claim relating to Lifty is limited to the greater of the amount you paid us (through Apple) in the 12 months before the claim, or $50. Nothing in these terms limits liability that cannot be limited by law, such as for fraud or for death or personal injury caused by negligence where that applies, and you keep any consumer rights your local law gives you that cannot be waived.</p>
+
+  <h2 id="law">12. Governing law and disputes</h2>
+  <p>These terms are governed by the laws of the United States and the state where Jumpy Dumpling is based, without regard to conflict-of-law rules. If we cannot sort out a disagreement by talking, either of us may bring it in the courts of that state. If you are a consumer in the EU or UK, you keep the protection of the mandatory laws of the country where you live and may bring a claim in its courts. Please contact us first so we can try to fix it.</p>
+  <p>Apple is not a party to these terms and is not responsible for Lifty or any claim about it, but Apple and its subsidiaries are third-party beneficiaries of these terms and may enforce them against you where you use an Apple device.</p>
+
+  <h2 id="changes">13. Changes and contact</h2>
+  <p>We may update these terms as Lifty grows. We will change the date above, and if the change is significant, tell you in the app or by email before it applies. If you keep using Lifty after a change, you accept the new terms. If you do not agree, you can stop using Lifty and delete your account. Questions about these terms? Use the <a href={url('contact/')}>contact form</a>.</p>
+</LegalPage>

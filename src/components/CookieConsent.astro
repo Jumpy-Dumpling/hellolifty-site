@@ -1,0 +1,13 @@
+---
+import { url } from '../lib/url';
+---
+<div class="consent" id="consent" role="dialog" aria-modal="false" aria-labelledby="consent-title" aria-describedby="consent-text" hidden>
+  <div class="consent-body">
+    <p class="consent-title" id="consent-title">Cookies</p>
+    <p id="consent-text">We use Google Analytics cookies to count visits and see which pages help, so we can improve this site. They are off until you say yes (where the law asks us to), and you can change your mind any time from <b>Cookie settings</b> in the footer. See the <a href={url('privacy/#cookies')}>privacy policy</a>.</p>
+  </div>
+  <div class="consent-actions">
+    <button type="button" class="btn btn-ghost btn-sm" data-consent="denied">Decline</button>
+    <button type="button" class="btn btn-primary btn-sm" data-consent="granted">Accept</button>
+  </div>
+</div>

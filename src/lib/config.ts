@@ -18,7 +18,7 @@ export const SUPABASE_URL = 'https://wgnoggamuniednonmabq.supabase.co';
 export const SUPABASE_KEY = 'sb_publishable_NfDqiX95zXe6PI6RJhR8TA_AdqcWEDZ';
 
 export const LINKS = {
-  terms: 'https://www.jumpydumpling.com/lifty/tos',
-  privacy: 'https://www.jumpydumpling.com/lifty/privacy',
+  terms: 'https://hellolifty.com/terms/',
+  privacy: 'https://hellolifty.com/privacy/',
   studio: 'https://www.jumpydumpling.com',
 };

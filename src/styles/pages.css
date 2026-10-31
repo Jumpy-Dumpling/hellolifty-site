@@ -118,3 +118,17 @@
   .gizmo { flex-direction: column; min-height: 0; } .split-shot .phone { --w: 262px; } .val { flex-direction: column; } .studio-card { padding: 30px 24px; border-radius: 30px; } .contact { padding-top: 120px; } .contact-form { padding: 26px 22px; }
 }
 @media (prefers-reduced-motion: reduce) { .ph-stage .p1, .ph-stage .p2, .ph-stage .halo, .gizmo .watch { animation: none !important; } }
+
+/* ---------- legal pages (privacy, terms) ---------- */
+.legal { padding: 0 0 80px; }
+.legal .updated { color: var(--faint); font-weight: 700; font-size: 14px; margin-bottom: 28px; }
+.legal h2 { font-size: clamp(22px, 2.4vw, 28px); letter-spacing: -.025em; margin: 44px 0 12px; scroll-margin-top: 100px; }
+.legal h3 { font-size: 18px; margin: 26px 0 8px; }
+.legal p, .legal li { font-size: 17px; line-height: 1.7; color: #2a3d60; }
+.legal p + p, .legal ul + p, .legal p + ul { margin-top: 1em; }
+.legal ul { padding-left: 22px; display: grid; gap: 8px; } .legal li { list-style: disc; }
+.legal a { color: var(--blue); font-weight: 700; text-decoration: underline; text-underline-offset: 3px; }
+.legal strong { color: var(--text); }
+.legal .toc { padding: 20px 24px; border-radius: 20px; background: var(--surface); border: 1px solid var(--line); box-shadow: var(--shadow); margin-bottom: 8px; }
+.legal .toc ol { padding-left: 20px; display: grid; gap: 6px; columns: 2; column-gap: 28px; } .legal .toc li { list-style: decimal; font-size: 15.5px; } .legal .toc a { text-decoration: none; }
+@media (max-width: 640px) { .legal .toc ol { columns: 1; } }

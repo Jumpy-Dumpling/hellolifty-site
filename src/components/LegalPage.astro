@@ -1,0 +1,19 @@
+---
+import Base from '../layouts/Base.astro';
+import SimpleHero from './SimpleHero.astro';
+import { crumbGraph, pageGraph } from '../lib/seo';
+
+interface Props { kicker: string; title: string; lede: string; seoTitle: string; description: string; path: string; updated: string; sections: { id: string; title: string }[] }
+const { kicker, title, lede, seoTitle, description, path, updated, sections } = Astro.props;
+const jsonLd = [pageGraph('WebPage', seoTitle, description, path, Astro.site), crumbGraph([[title, path]], Astro.site)];
+---
+<Base title={seoTitle} description={description} jsonLd={jsonLd}>
+  <SimpleHero kicker={kicker} title={title} lede={lede} />
+  <section class="legal">
+    <div class="wrap narrow">
+      <p class="updated">Last updated {updated}</p>
+      <nav class="toc" aria-label="On this page"><ol>{sections.map((s) => <li><a href={`#${s.id}`}>{s.title}</a></li>)}</ol></nav>
+      <slot />
+    </div>
+  </section>
+</Base>

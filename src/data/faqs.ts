@@ -15,7 +15,7 @@ export const pricingFaq: [string, string][] = [
   ['Is there a free plan?', `No. Every plan includes everything, and each starts with a ${TRIAL_DAYS}-day free trial so you can try it all first.`],
   ['How does the free trial work?', `You start a monthly or yearly plan and get ${TRIAL_DAYS} days free. If you cancel before the trial ends, you are not charged. If a friend invited you, the trial is ${REFERRAL_TRIAL_DAYS} days.`],
   ['What is the difference between the plans?', `Nothing about the features: every plan includes all of Lifty. Monthly is ${PRICE_MONTHLY} a month, Yearly is ${PRICE_YEARLY} a year, and Lifetime is ${PRICE_LIFETIME} once.`],
-  ['What does Lifetime include?', 'Lifty for good, with nothing more to pay, plus a Lifty starter pack: a tank or T-shirt, gym socks and a drawstring bag. It is a limited-time offer and will not always be available.'],
+  ['What does Lifetime include?', 'Lifty for good, with nothing more to pay, plus a Lifty starter pack: a tank or T-shirt, gym socks and a drawstring bag. It unlocks 30 days after you buy (a short wait that helps protect accounts from misuse and fraud), then you choose a tank or T-shirt and send your mailing address from Settings, and the app tracks it until it ships. It is a limited-time offer and will not always be available.'],
   ['How do I cancel?', 'Subscriptions are managed in your Apple ID or Google Play settings, and you can cancel any time. Lifetime is a one-time purchase with nothing to cancel.'],
   ['Where do I pay?', 'Purchases go through the App Store or Google Play, so payment and renewals are handled by Apple or Google, not by Lifty.'],
 ];

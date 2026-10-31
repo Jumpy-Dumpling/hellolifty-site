@@ -1,0 +1,120 @@
+---
+import LegalPage from '../components/LegalPage.astro';
+import { url } from '../lib/url';
+
+const sections = [
+  { id: 'who', title: 'Who we are' },
+  { id: 'collect', title: 'What we collect' },
+  { id: 'use', title: 'How we use it' },
+  { id: 'ai', title: 'AI features' },
+  { id: 'sharing', title: 'Who can see your information' },
+  { id: 'providers', title: 'Companies that help us run Lifty' },
+  { id: 'health', title: 'Apple Health and permissions' },
+  { id: 'cookies', title: 'This website and cookies' },
+  { id: 'keep', title: 'How long we keep it' },
+  { id: 'rights', title: 'Your choices and rights' },
+  { id: 'kids', title: 'Children' },
+  { id: 'security', title: 'Security and transfers' },
+  { id: 'changes', title: 'Changes and contact' },
+];
+---
+<LegalPage kicker="Legal" title="Privacy" lede="What Lifty collects, why, who sees it, and how to take it back. Written to be read."
+  seoTitle="Lifty Privacy Policy: How We Handle Your Data" description="How Lifty and hellolifty.com collect, use and protect your information, who can see it, and how to export or delete it."
+  path="privacy/" updated="October 31, 2026" sections={sections}>
+
+  <p>This policy covers the Lifty app (iPhone and Apple Watch) and this website, hellolifty.com. The short version: your training belongs to you, we use it to run Lifty, we do not sell it, and there are no ads. The details are below.</p>
+
+  <h2 id="who">1. Who we are</h2>
+  <p>Lifty is made by Jumpy Dumpling, a small studio run by Zac ("we", "us"). We decide how your information is used, so we are the "controller" in privacy-law terms. You can reach us any time through the <a href={url('contact/')}>contact form</a>.</p>
+
+  <h2 id="collect">2. What we collect</h2>
+  <h3>Information you give us</h3>
+  <ul>
+    <li><strong>Your account:</strong> your name, email address, and either a password or a sign-in link or code sent to your email.</li>
+    <li><strong>Your profile and preferences:</strong> a profile photo if you add one, your goal, units, schedule, training preferences and settings.</li>
+    <li><strong>Your training:</strong> routines, workouts, sets, notes, personal records, body weight, body measurements, and any exercises you create. These sync to your account so your history follows you to a new phone.</li>
+    <li><strong>Progress photos:</strong> stored privately in your account and never shown to anyone else.</li>
+    <li><strong>Things you choose to share:</strong> posts, photos, videos, comments, reactions, and challenges you join or create.</li>
+    <li><strong>Your starter pack request:</strong> if you claim a starter pack or reward, the name, mailing address and size you enter, used only to ship it.</li>
+    <li><strong>Messages and the waitlist:</strong> what you write in the contact form, and your email if you join the waitlist.</li>
+    <li><strong>Codes and referrals:</strong> promo or referral codes you redeem, and which friend invited you.</li>
+  </ul>
+  <h3>Information created by using Lifty</h3>
+  <ul>
+    <li><strong>Purchase status.</strong> Payments are handled by Apple. We never see your card or Apple ID details. We learn whether you have a trial, a subscription or Lifetime access, and when it started and ends.</li>
+    <li><strong>Friends and activity.</strong> Who you are connected with, and the progress shown on challenge boards.</li>
+    <li><strong>Technical data</strong> needed to run the service, such as your app version and the time of a request. The app has no advertising or third-party analytics tools in it.</li>
+  </ul>
+
+  <h2 id="use">3. How we use it</h2>
+  <ul>
+    <li>To run Lifty: sign you in, save and sync your training, show your progress, and connect you with friends and challenges.</li>
+    <li>To provide the features you ask for, such as AI plans, coach notes, and sending reminders you set up.</li>
+    <li>To manage your subscription or Lifetime access, referrals and rewards, and to ship starter packs.</li>
+    <li>To keep Lifty safe: preventing abuse and fraud, handling reports on posts, and enforcing our <a href={url('terms/')}>Terms</a>.</li>
+    <li>To answer your messages, and to send service emails such as sign-in links and receipts. We do not send marketing email unless you ask us to.</li>
+    <li>To understand how the website is used, if you allow analytics (see <a href="#cookies">cookies</a>).</li>
+  </ul>
+  <p>If you are in the European Economic Area or the UK, our legal bases are: performing our contract with you (running your account and features), our legitimate interests (security, fraud prevention, improving the service), your consent (analytics cookies, and Apple Health access), and legal obligations.</p>
+
+  <h2 id="ai">4. AI features</h2>
+  <p>Some features use an AI model to write a response: building a plan, a coach note on your recent training, reading notes or a photo you import, and ideas for Lifty Studio videos. When you use one, we send the relevant information to our AI provider, Anthropic, so it can produce the result. That can include your goals, experience and training preferences, a summary of your recent training, and any text or photo you give it to read. We send only what the feature needs. Plans are drafts you review before they are saved, and suggestions wait for you to apply them. If you would rather not use AI, you can build routines yourself and everything else works.</p>
+
+  <h2 id="sharing">5. Who can see your information</h2>
+  <ul>
+    <li><strong>Only you</strong> see your account details, body data, notes and progress photos.</li>
+    <li><strong>Your friends</strong> see workouts, records and posts you choose to share. Friends are people you accepted, and each post has its own comments switch.</li>
+    <li><strong>Everyone using Lifty</strong> sees Lifty team announcements (from us), and on shared challenge boards, shared exercises and leaderboards, your first name and last initial and your challenge progress. You can leave boards in Settings.</li>
+    <li><strong>We do not sell your personal information</strong>, we do not share it for advertising, and we do not track you across other companies' apps or websites.</li>
+    <li>We may disclose information if the law requires it, to protect people's safety, or as part of a sale or transfer of the business, in which case this policy continues to apply to your information unless you are told otherwise.</li>
+  </ul>
+
+  <h2 id="providers">6. Companies that help us run Lifty</h2>
+  <p>We use a few service providers who handle information only on our behalf, to deliver Lifty:</p>
+  <ul>
+    <li><strong>Supabase</strong>: our database, sign-in, file storage and server functions, where your account data lives.</li>
+    <li><strong>Apple</strong>: the App Store (purchases and subscriptions), Apple Health (if you connect it), and the watch.</li>
+    <li><strong>Anthropic</strong>: the AI model behind the features in section 4.</li>
+    <li><strong>Resend</strong>: sending sign-in and service emails.</li>
+    <li><strong>Expo / EAS</strong>: delivering app updates to your phone.</li>
+    <li><strong>GitHub Pages</strong>: hosting this website.</li>
+    <li><strong>Google Analytics</strong>: website visit counts, only on this website and only as described in section 8.</li>
+    <li>The shipping service that delivers a starter pack to the address you gave us.</li>
+  </ul>
+
+  <h2 id="health">7. Apple Health and permissions</h2>
+  <p>Apple Health is optional and off until you turn it on. If you do, Lifty can save finished workouts and body weight to Health, and read your body weight and any workouts your Apple Watch already recorded, so nothing is counted twice. On your Apple Watch, Lifty records your workout session and shows your heart rate during it. Health data is used only to give you these features. We do not use it for advertising or data brokering, and we do not sell it. You can turn Health access off at any time in the Health app or iPhone Settings.</p>
+  <p>Lifty also asks, only when you use the matching feature, for access to your camera and microphone (to film Lifty Studio videos and scan friend QR codes), your photos (to add pictures and save videos), and notifications (for reminders you set). You can say no or change these in iPhone Settings, and the rest of Lifty keeps working.</p>
+
+  <h2 id="cookies">8. This website and cookies</h2>
+  <p>The Lifty app does not use cookies. This website, hellolifty.com, uses Google Analytics to count visits and see which pages are useful. It sets cookies and receives your approximate location, device and browser type, the pages you view, and how you arrived, with your IP address anonymized.</p>
+  <ul>
+    <li><strong>In the EU, EEA, UK and Switzerland:</strong> analytics stay off until you tap Accept on the banner.</li>
+    <li><strong>Elsewhere, including the United States:</strong> analytics run automatically, and we honor a Global Privacy Control signal from your browser by leaving analytics off.</li>
+    <li><strong>Anywhere:</strong> choose <strong>Cookie settings</strong> in the footer to accept or decline at any time. Declining switches analytics off and clears the cookies Google set.</li>
+  </ul>
+  <p>We guess which group you are in from your device's time zone. If you are in one of the regions above and see no banner, or the reverse, use Cookie settings to choose. Your choice is remembered in your browser. The waitlist and contact forms store only what you type in them.</p>
+
+  <h2 id="keep">9. How long we keep it</h2>
+  <p>We keep your account information and training for as long as you have an account. When you delete your account in the app (Settings, then Delete account), we delete your profile, training, photos and posts from our systems, and your friends no longer see them. Backups are replaced on a regular schedule. We may keep a small amount of information for as long as the law requires, for example records of a purchase, or to prevent abuse and fraud. Contact-form messages are kept while we deal with them and for a reasonable time afterward. Shipping details for a starter pack are kept only until it is delivered and any problem is sorted out.</p>
+
+  <h2 id="rights">10. Your choices and rights</h2>
+  <ul>
+    <li><strong>Export:</strong> Settings, then Export workouts (CSV), gives you your history.</li>
+    <li><strong>Edit:</strong> change your profile, training data and sharing settings in the app at any time.</li>
+    <li><strong>Delete:</strong> delete your account in the app. If you cannot, <a href={url('contact/')}>contact us</a> and we will do it.</li>
+    <li><strong>Everyone, everywhere,</strong> may ask us what we hold about them, ask for a correction, or ask us to stop using their information.</li>
+    <li><strong>If you are in the EEA, the UK or Switzerland,</strong> you also have the legal right to access, correct, erase, restrict or object to our use of your information, to take it with you (portability), to withdraw consent at any time, and to complain to your data protection authority.</li>
+    <li><strong>If you are in California or another US state with a privacy law,</strong> you may ask to know, correct or delete the personal information we hold, and to opt out of its sale or sharing, which we do not do. We will not treat you worse for using these rights.</li>
+  </ul>
+  <p>To use a right that the app does not already cover, <a href={url('contact/')}>send us a message</a>. We may need to confirm it is really you, and we will answer within the time the law gives us.</p>
+
+  <h2 id="kids">11. Children</h2>
+  <p>Lifty is not for children under 13, and we do not knowingly collect their information. If you think a child has given us personal information, tell us and we will delete it. In some places the minimum age is higher, and you must meet your local age to use Lifty.</p>
+
+  <h2 id="security">12. Security and international transfers</h2>
+  <p>We protect your information with encrypted connections, access rules that limit each account to its own data, and private storage for photos and videos. No service is perfectly secure, so please use a strong password. Lifty and our providers are mostly based in the United States, so your information may be processed there. Where the law requires it, we rely on approved safeguards for those transfers.</p>
+
+  <h2 id="changes">13. Changes and contact</h2>
+  <p>If we change this policy in a way that matters, we will update the date at the top and, for significant changes, tell you in the app or by email. Questions? Use the <a href={url('contact/')}>contact form</a>.</p>
+</LegalPage>
