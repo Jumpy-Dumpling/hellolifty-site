@@ -8,6 +8,9 @@ export type Feature = {
   /** Icon-tile gradient, the pastel behind the mega-menu icon, and the color of the icon on it. */
   c1: string; c2: string; pastel: string; ink: string;
   menu: string;
+  /** What search results and shared links show: a keyword-rich title and a description of 120-165 characters. */
+  seoTitle: string;
+  seoDescription: string;
   title: string;
   lede: string;
   main: string;
@@ -22,6 +25,8 @@ export const features: Feature[] = [
   {
     slug: 'set-logging', name: 'Set logging', icon: 'timer', c1: '#37A2FF', c2: '#0A62F0', pastel: '#E3F0FF', ink: '#0A7AFF',
     menu: 'Fast logging with a rest timer and PR celebrations',
+    seoTitle: 'Workout Logging App with Rest Timer & PR Tracking | Lifty',
+    seoDescription: 'Log every set in seconds. Lifty shows last session beside each set, suggests when to add weight, and includes a rest timer, plate calculator and PR tracking.',
     title: 'Log a set in seconds, not minutes.',
     lede: "Everything you need mid-workout and nothing you don't. Last session's numbers sit beside every set, and Lifty tells you what to try next.",
     main: 'workout', side: 'summary',
@@ -49,6 +54,8 @@ export const features: Feature[] = [
   {
     slug: 'plans', name: 'AI plans', icon: 'sparkles', c1: '#5CC8FF', c2: '#12A8D6', pastel: '#DDF4FB', ink: '#0E8FB8',
     menu: 'Programs built for your goal, schedule and gear',
+    seoTitle: 'AI Workout Plan Builder and Training Programs | Lifty',
+    seoDescription: 'Build a workout plan with AI, start from a proven program, or import your own notes, a photo, or your Strong and Hevy history. Edit everything before you save.',
     title: 'A plan that fits your week.',
     lede: 'Answer a few questions and Lifty writes your program. Or start from a proven template, build your own, or import the plan you already have.',
     main: 'plan', side: 'train',
@@ -76,6 +83,8 @@ export const features: Feature[] = [
   {
     slug: 'coach', name: 'Adaptive coach', icon: 'pulse', c1: '#2FD0A0', c2: '#0E9CC8', pastel: '#DDF7EE', ink: '#0E9C77',
     menu: 'Written notes and suggestions that adapt to you',
+    seoTitle: 'Adaptive AI Workout Coach and Training Review | Lifty',
+    seoDescription: 'Get a written coach note on your last four weeks. Lifty spots stalled lifts, balances muscle volume and calls deload weeks. Nothing changes until you approve it.',
     title: 'A coach that reads your training.',
     lede: 'Every few weeks Lifty looks at what you actually did and writes you a note in plain language, with specific next steps. Nothing changes until you say so.',
     main: 'coach', side: 'workout',
@@ -103,6 +112,8 @@ export const features: Feature[] = [
   {
     slug: 'progress', name: 'Progress & body', icon: 'stats-chart', c1: '#FF9A4D', c2: '#EE3F5A', pastel: '#FFEBE0', ink: '#E5552F',
     menu: 'Streaks, volume, records and body tracking',
+    seoTitle: 'Workout Progress Tracker: Volume, 1RM and Body Stats | Lifty',
+    seoDescription: 'Track weekly streaks, volume per muscle, estimated 1RM and records, plus body weight, nine measurements and private progress photos. Export your data any time.',
     title: 'See exactly what is working.',
     lede: 'Consistency, volume, records and your body, on screens that explain themselves. Know when to push and when to ease off.',
     main: 'progress', side: 'body',
@@ -130,6 +141,8 @@ export const features: Feature[] = [
   {
     slug: 'friends', name: 'Friends & feed', icon: 'people', c1: '#FF7A93', c2: '#E5334B', pastel: '#FFE4E8', ink: '#E5334B',
     menu: 'Follow your crew and cheer each other on',
+    seoTitle: 'Workout Social App: Train With Friends and Share PRs | Lifty',
+    seoDescription: 'Connect with friends by QR code, follow a feed of workouts and records, cheer with reactions and race a weekly leaderboard. You choose what you share.',
     title: 'Training is better with a crew.',
     lede: 'Connect with friends by QR code or friend code, see their workouts, cheer their records and see who trained the most this week.',
     main: 'friends', side: 'summary',
@@ -157,6 +170,8 @@ export const features: Feature[] = [
   {
     slug: 'challenges', name: 'Challenges', icon: 'flag', c1: '#FFC857', c2: '#F08A0C', pastel: '#FFF1D6', ink: '#D98800',
     menu: 'Goals with a finish line, solo or with friends',
+    seoTitle: 'Fitness Challenges: Workout Goals With Friends | Lifty',
+    seoDescription: 'Chase 13 ready-made workout challenges or build your own. Count workouts, volume, records or sets per muscle, race friends and celebrate when you finish.',
     title: 'Goals with a finish line.',
     lede: 'Pick a challenge, chase it with friends, and celebrate when you finish. Thirteen ready-made goals, or build your own.',
     main: 'challenges', side: 'friends',
@@ -184,6 +199,8 @@ export const features: Feature[] = [
   {
     slug: 'studio', name: 'Lifty Studio', icon: 'film', c1: '#8B6CFF', c2: '#5B3BE8', pastel: '#ECE7FF', ink: '#5B3BE8',
     menu: 'Plan, film, edit and post gym videos',
+    seoTitle: 'Gym Video App: Plan, Film and Post Workout Videos | Lifty',
+    seoDescription: 'Turn your training into videos. Lifty suggests ideas from your workouts, guides each shot, helps you edit, and lets you post to friends or save to your photos.',
     title: 'Pick it. Film it. Post it.',
     lede: 'Turn your training into content. Lifty suggests ideas from your own workouts, guides each shot, and helps you edit and share, all inside the app.',
     main: 'studio', side: 'friends',
@@ -211,6 +228,8 @@ export const features: Feature[] = [
   {
     slug: 'watch', name: 'Apple Watch & widgets', icon: 'watch', c1: '#4C7DFF', c2: '#1B2F66', pastel: '#E4EAFB', ink: '#2C4CB5',
     menu: 'Log from your wrist and your lock screen',
+    seoTitle: 'Apple Watch Workout Logger, Widgets and Live Activity | Lifty',
+    seoDescription: 'Log a set with a tap on your Apple Watch, get a buzz when rest ends, and follow your workout on the lock screen with a Live Activity and home screen widgets.',
     title: 'Log from your wrist.',
     lede: 'Tap your Apple Watch to log a set. Home screen widgets and a lock screen Live Activity keep your workout in view, with no phone in your hand.',
     main: 'today',

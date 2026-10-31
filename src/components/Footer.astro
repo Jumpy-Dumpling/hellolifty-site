@@ -12,9 +12,9 @@ const year = new Date().getFullYear();
         <p class="foot-blurb">Strength training that gets smarter with you. Coming soon to iOS and Android.</p>
         <p style="margin-top:22px"><a class="btn btn-primary btn-sm" href="#waitlist">Join the waitlist</a></p>
       </div>
-      <div><h5>Features</h5><ul>{features.slice(0, 5).map((f) => <li><a href={url(`features/${f.slug}/`)}>{f.name}</a></li>)}</ul></div>
-      <div><h5>&nbsp;</h5><ul>{features.slice(5).map((f) => <li><a href={url(`features/${f.slug}/`)}>{f.name}</a></li>)}<li><a href={url('features/')}>All features</a></li></ul></div>
-      <div><h5>Company</h5><ul><li><a href={url('pricing/')}>Pricing</a></li><li><a href={url('about/')}>About</a></li><li><a href={url('contact/')}>Contact</a></li><li><a href={LINKS.terms}>Terms</a></li><li><a href={LINKS.privacy}>Privacy</a></li></ul></div>
+      <div><p class="foot-title">Features</p><ul>{features.slice(0, 5).map((f) => <li><a href={url(`features/${f.slug}/`)}>{f.name}</a></li>)}</ul></div>
+      <div><p class="foot-title">&nbsp;</p><ul>{features.slice(5).map((f) => <li><a href={url(`features/${f.slug}/`)}>{f.name}</a></li>)}<li><a href={url('features/')}>All features</a></li></ul></div>
+      <div><p class="foot-title">Company</p><ul><li><a href={url('pricing/')}>Pricing</a></li><li><a href={url('about/')}>About</a></li><li><a href={url('contact/')}>Contact</a></li><li><a href={LINKS.terms}>Terms</a></li><li><a href={LINKS.privacy}>Privacy</a></li></ul></div>
     </div>
     <div class="foot-base"><span>&copy; {year} Jumpy Dumpling. Lifty is an app by <a href={LINKS.studio} style="color:#fff;font-weight:700">Jumpy Dumpling</a>.</span><span>Small apps. Big dreams.</span></div>
   </div>

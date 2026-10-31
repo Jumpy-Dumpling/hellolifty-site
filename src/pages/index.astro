@@ -8,16 +8,12 @@ import Bento from '../components/Bento.astro';
 import Pricing from '../components/Pricing.astro';
 import Waitlist from '../components/Waitlist.astro';
 import Faq from '../components/Faq.astro';
+import { homeFaq } from '../data/faqs';
+import { appGraph, faqGraph, pageGraph, SITE_DESCRIPTION, SITE_TITLE } from '../lib/seo';
 
-const jsonLd = [
-  {
-    '@type': 'SoftwareApplication', name: 'Lifty', applicationCategory: 'HealthApplication', operatingSystem: 'iOS, Android',
-    description: 'Strength training app with personalized plans, fast set logging, an adaptive coach, friends and challenges, and a video studio.',
-    url: 'https://hellolifty.com/', publisher: { '@type': 'Organization', name: 'Jumpy Dumpling', url: 'https://www.jumpydumpling.com' },
-  },
-];
+const jsonLd = [pageGraph('WebPage', SITE_TITLE, SITE_DESCRIPTION, '', Astro.site, { about: { '@id': 'https://hellolifty.com/#app' } }), appGraph(Astro.site), faqGraph(homeFaq)];
 ---
-<Base jsonLd={jsonLd}>
+<Base title={SITE_TITLE} description={SITE_DESCRIPTION} image="og/home.jpg" imageAlt="Lifty: Train like it matters. A strength training app for iPhone and Android." preload="screens/today.webp" jsonLd={jsonLd}>
   <Hero />
   <Marquee />
   <Scrub />

@@ -1,16 +1,7 @@
 ---
-import { LINKS, TRIAL_DAYS, REFERRAL_TRIAL_DAYS } from '../lib/config';
+import { homeFaq } from '../data/faqs';
 interface Props { items?: [string, string][]; title?: string }
-const home: [string, string][] = [
-  ['When does Lifty launch?', "Soon. Join the waitlist and you'll get one email the day it's available on the App Store and Google Play."],
-  ['Is there a free version?', `Lifty has no free tier. Every plan starts with a ${TRIAL_DAYS}-day free trial, so you can try everything before you pay. If a friend invited you, the trial is ${REFERRAL_TRIAL_DAYS} days.`],
-  ['Which phones does it work on?', 'Lifty is coming to both iPhone and Android. The Apple Watch app is part of the iPhone version.'],
-  ['Can I bring my workout history?', 'Yes. Import your history from Strong or Hevy, and your records and trends come with you.'],
-  ['Do I need a connection to log a workout?', "No. Workouts are saved on your phone first and back up to your account when you're online. Friends and the AI coach need a connection."],
-  ['Who can see my workouts?', `Only people you've accepted as friends, and only the workouts you choose to share. Read the <a href="${LINKS.privacy}">privacy policy</a> for the details.`],
-  ['How do I cancel?', 'Subscriptions are managed in your Apple ID or Google Play settings, and you can cancel any time. Lifetime is a one-time purchase with nothing to cancel.'],
-];
-const { items = home, title = 'Good to' } = Astro.props;
+const { items = homeFaq, title = 'Good to' } = Astro.props;
 ---
 <section class="faq" id="faq">
   <div class="wrap narrow">

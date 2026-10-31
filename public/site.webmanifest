@@ -1,0 +1,14 @@
+{
+  "name": "Lifty",
+  "short_name": "Lifty",
+  "description": "Strength training that gets smarter with you.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "browser",
+  "background_color": "#F3F6FC",
+  "theme_color": "#F3F6FC",
+  "icons": [
+    { "src": "/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" }
+  ]
+}

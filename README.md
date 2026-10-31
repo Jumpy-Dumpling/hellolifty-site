@@ -56,6 +56,22 @@ Both call a function on the Lifty Supabase project, using the public key in `src
 Run `supabase db push` there first. Each migration's header has the queries to read what came in (the whole waitlist, iPhone or Android only, new contact messages).
 Contact messages do not notify you; check the table, or ask for an email notification to be wired up once `zac@hellolifty.com` can receive mail.
 
+## SEO, answer engines and sharing
+
+Every page sets its own title, description, canonical address, share graphic and structured data (`src/layouts/Base.astro` builds the tags; each page passes its own copy).
+
+- **Titles and descriptions** for the feature pages are in `src/data/features.ts` (`seoTitle`, `seoDescription`); other pages set theirs at the top of the page file.
+  Aim for titles of 60 characters or fewer and descriptions of 120 to 160.
+- **Share graphics** (1200x630, one per page) are in `public/og/`. `python3 design/og.py` redraws them all, or `python3 design/og.py coach` one. Edit the headlines in `CARDS` in that file.
+- **Structured data** (schema.org JSON-LD): Organization and WebSite on every page, plus the page, breadcrumbs, the app with its three prices, and FAQ data built from
+  the same text as the visible FAQ (`src/data/faqs.ts` and each feature's `faq`), so the two never disagree.
+- **For AI assistants and crawlers:** `/robots.txt` welcomes search and AI crawlers by name, `/llms.txt` is a plain-text summary of the site and `/llms-full.txt` has every feature page's copy.
+- **Check it:** `npm run build && npm run seo` audits every built page (titles, descriptions, canonicals, social tags, share-graphic size, structured data,
+  headings, image alt text, sitemap and the files crawlers look for) and exits with an error if anything is wrong. Run it before each deploy.
+- The canonical address is `https://hellolifty.com`; builds never fall back to `localhost`.
+- After it is live, submit `https://hellolifty.com/sitemap-index.xml` in Google Search Console and Bing Webmaster Tools, and check a link in the
+  [Facebook Sharing Debugger](https://developers.facebook.com/tools/debug/) and the LinkedIn Post Inspector, which also refresh their caches.
+
 ## Where things live
 
 - `src/pages/` has the routes; `src/components/` the sections; `src/data/features.ts` every feature's copy; `src/lib/config.ts` the prices, trial lengths and links.

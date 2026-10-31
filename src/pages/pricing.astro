@@ -4,6 +4,8 @@ import SimpleHero from '../components/SimpleHero.astro';
 import Pricing from '../components/Pricing.astro';
 import Waitlist from '../components/Waitlist.astro';
 import Faq from '../components/Faq.astro';
+import { pricingFaq } from '../data/faqs';
+import { crumbGraph, faqGraph, pageGraph, appGraph } from '../lib/seo';
 import { TRIAL_DAYS, REFERRAL_TRIAL_DAYS, PRICE_MONTHLY, PRICE_YEARLY, PRICE_LIFETIME } from '../lib/config';
 
 const groups = [
@@ -13,16 +15,11 @@ const groups = [
   { icon: 'people', c1: '#FF7A93', c2: '#E5334B', title: 'Connect', items: ['Friends, a feed, reactions and a weekly leaderboard', 'Challenges, solo or with your crew', 'Lifty Studio for gym videos'] },
   { icon: 'watch', c1: '#4C7DFF', c2: '#1B2F66', title: 'Everywhere', items: ['Apple Watch app, widgets and a lock screen Live Activity', 'Works offline, backs up when you reconnect', 'Export your data as a CSV any time'] },
 ];
-const qa: [string, string][] = [
-  ['Is there a free plan?', `No. Every plan includes everything, and each starts with a ${TRIAL_DAYS}-day free trial so you can try it all first.`],
-  ['How does the free trial work?', `You start a monthly or yearly plan and get ${TRIAL_DAYS} days free. If you cancel before the trial ends, you are not charged. If a friend invited you, the trial is ${REFERRAL_TRIAL_DAYS} days.`],
-  ['What is the difference between the plans?', `Nothing about the features: every plan includes all of Lifty. Monthly is ${PRICE_MONTHLY} a month, Yearly is ${PRICE_YEARLY} a year, and Lifetime is ${PRICE_LIFETIME} once.`],
-  ['What does Lifetime include?', 'Lifty for good, with nothing more to pay, plus a Lifty starter pack: a tank or T-shirt, gym socks and a drawstring bag. It is a limited-time offer and will not always be available.'],
-  ['How do I cancel?', 'Subscriptions are managed in your Apple ID or Google Play settings, and you can cancel any time. Lifetime is a one-time purchase with nothing to cancel.'],
-  ['Where do I pay?', 'Purchases go through the App Store or Google Play, so payment and renewals are handled by Apple or Google, not by Lifty.'],
-];
+const title = `Lifty Pricing: ${PRICE_MONTHLY} a Month, ${PRICE_YEARLY} a Year or ${PRICE_LIFETIME} Once`;
+const description = `Try Lifty free for ${TRIAL_DAYS} days. Then ${PRICE_MONTHLY} a month, ${PRICE_YEARLY} a year, or ${PRICE_LIFETIME} once for Lifetime. Every plan includes every feature.`;
+const jsonLd = [pageGraph('WebPage', title, description, 'pricing/', Astro.site, { about: { '@id': 'https://hellolifty.com/#app' } }), appGraph(Astro.site), crumbGraph([['Pricing', 'pricing/']], Astro.site), faqGraph(pricingFaq)];
 ---
-<Base title="Pricing" description={`Lifty pricing: ${PRICE_MONTHLY} a month, ${PRICE_YEARLY} a year, or ${PRICE_LIFETIME} once. Every plan starts with a ${TRIAL_DAYS}-day free trial.`}>
+<Base title={title} description={description} image="og/pricing.jpg" imageAlt="Lifty pricing: free for 7 days, then monthly, yearly or lifetime" jsonLd={jsonLd}>
   <SimpleHero kicker="Pricing" title="One plan. Everything" accent="included." lede={`Start with ${TRIAL_DAYS} days free. Then pick monthly or yearly, or pay once and own it.`} />
   <Pricing bare />
   <section class="included">
@@ -49,5 +46,5 @@ const qa: [string, string][] = [
     </div>
   </section>
   <Waitlist />
-  <Faq items={qa} title="Pricing, good to" />
+  <Faq items={pricingFaq} title="Pricing, good to" />
 </Base>

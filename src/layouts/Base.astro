@@ -9,54 +9,73 @@ import Nav from '../components/Nav.astro';
 import Footer from '../components/Footer.astro';
 import { url } from '../lib/url';
 import iconFont from '../assets/fonts/ionicons.woff2?url';
-import { absolute, SITE_NAME, TAGLINE, SITE_DESCRIPTION } from '../lib/seo';
+import { absolute, baseGraph, DEFAULT_OG, SITE_DESCRIPTION, SITE_NAME, SITE_TITLE, TAGLINE } from '../lib/seo';
 
 interface Props {
+  /** The full <title>, written for search results (roughly 50-60 characters, brand last). */
   title?: string;
+  /** The description search results and shared links show (roughly 120-160 characters). */
   description?: string;
+  /** Path under public/ of the 1200x630 image shown when the page is shared. */
   image?: string;
+  imageAlt?: string;
   noindex?: boolean;
+  /** schema.org nodes for this page; the organization and website nodes are added to every page. */
   jsonLd?: Record<string, unknown>[];
+  /** A path under public/ to preload because it is the first thing people see. */
+  preload?: string;
   bare?: boolean;
 }
-const { title, description = SITE_DESCRIPTION, image = 'og.png', noindex = false, jsonLd = [], bare = false } = Astro.props;
-const fullTitle = title ? `${title} · ${SITE_NAME}` : `${SITE_NAME}: ${TAGLINE}`;
-const canonical = new URL(Astro.url.pathname, Astro.site ?? 'http://localhost:4321').href;
+const { title = SITE_TITLE, description = SITE_DESCRIPTION, image = DEFAULT_OG, imageAlt = `${SITE_NAME}: ${TAGLINE}`, noindex = false, jsonLd = [], preload, bare = false } = Astro.props;
+const canonical = new URL(Astro.url.pathname, Astro.site ?? 'https://hellolifty.com').href;
 const imageUrl = absolute(image, Astro.site);
-const graph = jsonLd.length ? { '@context': 'https://schema.org', '@graph': jsonLd } : null;
+const graph = { '@context': 'https://schema.org', '@graph': [...baseGraph(Astro.site), ...jsonLd] };
 ---
 <!doctype html>
 <html lang="en" class="no-js">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-    <title>{fullTitle}</title>
+    <title>{title}</title>
     <meta name="description" content={description} />
-    <meta name="theme-color" content="#050A1C" />
-    <meta name="color-scheme" content="dark" />
-    <meta name="robots" content={noindex ? 'noindex, nofollow' : 'index, follow, max-image-preview:large'} />
+    <meta name="robots" content={noindex ? 'noindex, nofollow' : 'index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1'} />
     <link rel="canonical" href={canonical} />
-    <link rel="icon" type="image/png" href={url('favicon.png')} />
+    <meta name="author" content="Jumpy Dumpling" />
+    <meta name="application-name" content={SITE_NAME} />
+    <meta name="apple-mobile-web-app-title" content={SITE_NAME} />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="theme-color" content="#F3F6FC" />
+    <meta name="color-scheme" content="light" />
+
+    <link rel="icon" href={url('favicon.ico')} sizes="48x48" />
+    <link rel="icon" type="image/png" href={url('favicon.png')} sizes="32x32" />
     <link rel="apple-touch-icon" href={url('apple-touch-icon.png')} />
-    <link rel="sitemap" href={url('sitemap-index.xml')} />
+    <link rel="manifest" href={url('site.webmanifest')} />
+    <link rel="sitemap" type="application/xml" href={url('sitemap-index.xml')} />
+    <link rel="alternate" type="text/plain" href={url('llms.txt')} title="Lifty in plain text, for AI assistants" />
     <link rel="preload" href={iconFont} as="font" type="font/woff2" crossorigin />
+    {preload && <link rel="preload" as="image" type="image/webp" href={url(preload)} fetchpriority="high" />}
 
     <meta property="og:site_name" content={SITE_NAME} />
     <meta property="og:locale" content="en_US" />
     <meta property="og:type" content="website" />
     <meta property="og:url" content={canonical} />
-    <meta property="og:title" content={fullTitle} />
+    <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:image" content={imageUrl} />
+    <meta property="og:image:secure_url" content={imageUrl} />
+    <meta property="og:image:type" content="image/jpeg" />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
-    <meta property="og:image:alt" content={`${SITE_NAME}: ${TAGLINE}`} />
+    <meta property="og:image:alt" content={imageAlt} />
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content={fullTitle} />
+    <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content={imageUrl} />
+    <meta name="twitter:image:alt" content={imageAlt} />
+    <meta name="twitter:url" content={canonical} />
 
-    {graph && <script type="application/ld+json" set:html={JSON.stringify(graph)} />}
+    <script type="application/ld+json" set:html={JSON.stringify(graph)} />
   </head>
   <body>
     <div class="bg" aria-hidden="true"><i class="bg-a"></i><i class="bg-b"></i><i class="bg-grid"></i></div>

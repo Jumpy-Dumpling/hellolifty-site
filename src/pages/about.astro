@@ -3,6 +3,11 @@ import Base from '../layouts/Base.astro';
 import SimpleHero from '../components/SimpleHero.astro';
 import Waitlist from '../components/Waitlist.astro';
 import { LINKS } from '../lib/config';
+import { crumbGraph, pageGraph } from '../lib/seo';
+
+const title = 'About Lifty: A Strength Training App by Jumpy Dumpling';
+const description = 'Lifty is made by Zac at Jumpy Dumpling, a one-person studio making small, useful apps. Here is why we built it and what we care about.';
+const jsonLd = [pageGraph('AboutPage', title, description, 'about/', Astro.site), crumbGraph([['About', 'about/']], Astro.site)];
 const values = [
   { icon: 'flash', c1: '#37A2FF', c2: '#0A62F0', title: 'Fast first', text: "If a feature slows down the set you're logging, it doesn't belong on that screen. Everything mid-workout is built for one thumb and a rest timer." },
   { icon: 'checkmark-circle', c1: '#2FD0A0', c2: '#0E9CC8', title: 'You stay in charge', text: 'Plans arrive as drafts you approve. Coach suggestions wait for your Apply. Sharing is something you opt into, never something that happens to you.' },
@@ -10,7 +15,7 @@ const values = [
   { icon: 'ribbon', c1: '#FFC857', c2: '#F08A0C', title: 'Honest pricing', text: 'One price for everything, a free trial to try it first, and a clear way to cancel. No feature walls, no surprises.' },
 ];
 ---
-<Base title="About" description="Lifty is made by Jumpy Dumpling, a one-person studio making small, useful apps. Here is what we care about.">
+<Base title={title} description={description} image="og/about.jpg" imageAlt="About Lifty: built by one small studio, for people who lift" jsonLd={jsonLd}>
   <SimpleHero kicker="About" title="Built by one small studio, for people who" accent="lift." lede="Lifty is made by Jumpy Dumpling, a one-person studio making small, useful apps." />
   <section class="story-text">
     <div class="wrap narrow">

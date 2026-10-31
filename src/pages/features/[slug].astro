@@ -7,14 +7,20 @@ import Related from '../../components/Related.astro';
 import Faq from '../../components/Faq.astro';
 import Waitlist from '../../components/Waitlist.astro';
 import { features } from '../../data/features';
+import { crumbGraph, faqGraph, pageGraph } from '../../lib/seo';
 
 export function getStaticPaths() {
   return features.map((feature) => ({ params: { slug: feature.slug }, props: { feature } }));
 }
 const { feature } = Astro.props;
-const jsonLd = [{ '@type': 'WebPage', name: `${feature.name} | Lifty`, description: feature.lede, isPartOf: { '@type': 'WebSite', name: 'Lifty', url: 'https://hellolifty.com/' } }];
+const path = `features/${feature.slug}/`;
+const jsonLd = [
+  pageGraph('WebPage', feature.seoTitle, feature.seoDescription, path, Astro.site, { about: { '@id': 'https://hellolifty.com/#app' }, primaryImageOfPage: { '@type': 'ImageObject', url: new URL(`/og/${feature.slug}.jpg`, Astro.site).href } }),
+  crumbGraph([['Features', 'features/'], [feature.name, path]], Astro.site),
+  faqGraph(feature.faq),
+];
 ---
-<Base title={feature.name} description={feature.lede} jsonLd={jsonLd}>
+<Base title={feature.seoTitle} description={feature.seoDescription} image={`og/${feature.slug}.jpg`} imageAlt={`Lifty ${feature.name}: ${feature.title}`} jsonLd={jsonLd}>
   <PageHero feature={feature} />
   <Highlights feature={feature} />
   <Splits feature={feature} />

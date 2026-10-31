@@ -4,8 +4,13 @@ import SimpleHero from '../../components/SimpleHero.astro';
 import Waitlist from '../../components/Waitlist.astro';
 import { features } from '../../data/features';
 import { url } from '../../lib/url';
+import { crumbGraph, pageGraph } from '../../lib/seo';
+
+const title = 'Lifty Features: Workout Logging, AI Plans, Coach and More';
+const description = 'Explore everything in Lifty: set logging, AI plans, an adaptive coach, progress tracking, friends, challenges, Lifty Studio and Apple Watch support.';
+const jsonLd = [pageGraph('CollectionPage', title, description, 'features/', Astro.site), crumbGraph([['Features', 'features/']], Astro.site)];
 ---
-<Base title="Features" description="Everything in Lifty: set logging, AI plans, an adaptive coach, progress tracking, friends, challenges, Lifty Studio and Apple Watch.">
+<Base title={title} description={description} image="og/features.jpg" imageAlt="Lifty features: set logging, AI plans, adaptive coach, progress, friends, challenges, Studio and Apple Watch" jsonLd={jsonLd}>
   <SimpleHero kicker="Features" title="Everything you need to" accent="train." lede="Planning, logging, coaching, progress and your crew, working together in one fast app." />
   <section class="hl" style="padding-top:20px">
     <div class="wrap">

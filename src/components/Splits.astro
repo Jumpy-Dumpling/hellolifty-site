@@ -15,7 +15,7 @@ const { feature: f } = Astro.props;
           <ul class="ticks">{s.ticks.map((t) => <li><i class="i i-checkmark-circle"></i>{t}</li>)}</ul>
         </div>
         <div class="split-shot">
-          {s.screen && <Phone src={s.screen} alt="" />}
+          {s.screen && <Phone src={s.screen} alt={`Lifty ${f.name} screen: ${s.title}`} />}
           {s.visual === 'watch' && (
             <div class="gizmo">
               <div class="watch"><div class="screen"><small>Bench Press</small><b>Set 4</b><span>190 lb &times; 8</span><i class="i i-checkmark"></i></div></div>

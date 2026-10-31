@@ -1,0 +1,33 @@
+<!doctype html><meta charset="utf-8">
+<style>
+@font-face{font-family:J;font-weight:800;src:url(../fonts/PlusJakartaSans_800ExtraBold.ttf)}
+@font-face{font-family:J;font-weight:600;src:url(../fonts/PlusJakartaSans_600SemiBold.ttf)}
+@font-face{font-family:J;font-weight:700;src:url(../fonts/PlusJakartaSans_700Bold.ttf)}
+*{box-sizing:border-box;margin:0}html,body{width:1200px;height:630px;overflow:hidden}
+body{font-family:J,sans-serif;color:#0A1A33;position:relative;background:linear-gradient(180deg,#DCE9FF,#F3F6FC 70%)}
+.grid{position:absolute;inset:0;background-image:linear-gradient(rgba(10,60,160,.06) 1px,transparent 1px),linear-gradient(90deg,rgba(10,60,160,.06) 1px,transparent 1px);background-size:60px 60px;-webkit-mask-image:radial-gradient(ellipse 80% 80% at 30% 20%,#000,transparent 75%)}
+.blob{position:absolute;border-radius:50%;filter:blur(60px)}
+.b1{width:620px;height:620px;left:-180px;top:-220px;background:rgba(46,155,255,.5)}
+.b2{width:560px;height:560px;right:-120px;top:20px;background:radial-gradient(circle,#EE3F5A,transparent 70%);opacity:.55}
+.b3{width:420px;height:420px;right:300px;bottom:-240px;background:rgba(124,92,255,.28)}
+.brand{position:absolute;left:72px;top:58px;display:flex;align-items:center;gap:14px;font-weight:800;font-size:36px;letter-spacing:-1.4px}.brand img{width:44px;height:46px}
+.text{position:absolute;left:72px;top:138px;width:520px;display:flex;flex-direction:column;align-items:flex-start;gap:20px}
+.kicker{display:inline-flex;align-items:center;gap:10px;font-weight:800;font-size:19px;letter-spacing:2.2px;text-transform:uppercase;color:#EE3F5A}
+.kicker::before{content:'';width:30px;height:3px;border-radius:3px;background:linear-gradient(90deg,#FF9A4D,#EE3F5A)}
+h1{font-size:58px;line-height:1.0;letter-spacing:-2.7px;font-weight:800}
+h1 em{font-style:normal;background:linear-gradient(100deg,#FF9A4D,#EE3F5A);-webkit-background-clip:text;background-clip:text;color:transparent}
+.sub{font-size:25px;line-height:1.4;font-weight:600;color:#56677F}
+.soon{position:absolute;left:72px;bottom:56px;display:inline-flex;align-items:center;gap:12px;padding:13px 26px 13px 20px;border-radius:999px;background:#fff;border:1.5px solid rgba(10,122,255,.28);box-shadow:0 10px 28px rgba(27,58,120,.12);font-weight:700;font-size:22px;color:#0B4FD6}
+.soon i{width:12px;height:12px;border-radius:50%;background:#2DBE7B;box-shadow:0 0 0 5px rgba(45,190,123,.2)}
+.ph{position:absolute;width:290px;border-radius:50px;padding:9px;background:linear-gradient(150deg,#29334f,#0a0f1f 40%,#05070f);box-shadow:0 0 0 1.5px rgba(255,255,255,.22) inset,0 40px 80px -20px rgba(20,60,160,.55),0 14px 30px rgba(27,58,120,.25)}
+.ph img{width:100%;border-radius:41px;display:block}
+.m{right:64px;top:92px;transform:rotate(5deg)}.s{right:318px;top:150px;transform:rotate(-6deg);width:250px;opacity:.97}
+.logo-big{position:absolute;right:130px;top:120px;width:340px;filter:drop-shadow(0 30px 40px rgba(20,60,160,.35))}
+</style>
+<div class="grid"></div><div class="blob b1"></div><div class="blob b2"></div><div class="blob b3"></div>
+<div class="brand"><img src="../../public/logo.png">Lifty</div>
+<div class="text"><div class="kicker">Progress and body</div>
+<h1>See exactly what <em>is working.</em></h1>
+<div class="sub">Streaks, volume, records, measurements and photos.</div></div>
+<div class="soon"><i></i>Coming soon to iOS and Android</div>
+<div class="ph s"><img src="../../public/screens/body.webp"></div><div class="ph m"><img src="../../public/screens/progress.webp"></div>
