@@ -30,7 +30,7 @@ const sections = [
   <h2 id="collect">2. What we collect</h2>
   <h3>Information you give us</h3>
   <ul>
-    <li><strong>Your account:</strong> your name, email address, and either a password or a sign-in link or code sent to your email.</li>
+    <li><strong>Your account:</strong> your name and email address, from Sign in with Apple or Google. If you use Apple's "Hide My Email", we get Apple's private relay address instead. We never see or store a password.</li>
     <li><strong>Your profile and preferences:</strong> a profile photo if you add one, your goal, units, schedule, training preferences and settings.</li>
     <li><strong>Your training:</strong> routines, workouts, sets, notes, personal records, body weight, body measurements, and any exercises you create. These sync to your account so your history follows you to a new phone.</li>
     <li><strong>Progress photos:</strong> stored privately in your account and never shown to anyone else.</li>
@@ -42,6 +42,7 @@ const sections = [
   <h3>Information created by using Lifty</h3>
   <ul>
     <li><strong>Purchase status.</strong> Payments are handled by Apple. We never see your card or Apple ID details. We learn whether you have a trial, a subscription or Lifetime access, and when it started and ends.</li>
+    <li><strong>Free trial record.</strong> To keep the free Premium period to once per person, we keep a one-way hash of your email address (a scrambled value that cannot be turned back into the address) when you first sign up. We keep this hash after you delete your account, and use it only to tell that an address has already had a trial.</li>
     <li><strong>Friends and activity.</strong> Who you are connected with, and the progress shown on challenge boards.</li>
     <li><strong>Technical data</strong> needed to run the service, such as your app version and the time of a request. The app has no advertising or third-party analytics tools in it.</li>
   </ul>

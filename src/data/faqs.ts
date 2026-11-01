@@ -4,6 +4,7 @@ import { LINKS, TRIAL_DAYS, REFERRAL_TRIAL_DAYS, PRICE_MONTHLY, PRICE_YEARLY, PR
 export const homeFaq: [string, string][] = [
   ['When does Lifty launch?', "Soon. Join the waitlist and you'll get one email the day it's available on the App Store and Google Play."],
   ['Is there a free version?', `Yes. Logging, your workout history, importing from Strong or Hevy, friends, challenges and the Apple Watch app are free for good. Premium adds the adaptive coach, AI plans, deeper analytics and the full Studio. Every new account starts with ${TRIAL_DAYS} days of Premium and no card, or ${REFERRAL_TRIAL_DAYS} days if a friend invited you, then simply keeps the free version unless you upgrade.`],
+  ['Do I need a password?', 'No. You sign in with Apple on iPhone or with Google on Android, so there is no password to make or lose. Apple lets you hide your email address from us.'],
   ['Which phones does it work on?', 'Lifty is coming to both iPhone and Android. The Apple Watch app is part of the iPhone version.'],
   ['Can I bring my workout history?', 'Yes. Import your history from Strong or Hevy, and your records and trends come with you.'],
   ['Do I need a connection to log a workout?', "No. Workouts are saved on your phone first and back up to your account when you're online. Friends and the AI coach need a connection."],
