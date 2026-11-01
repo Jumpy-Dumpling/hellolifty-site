@@ -1,0 +1,31 @@
+---
+import Base from '../layouts/Base.astro';
+import { url } from '../lib/url';
+---
+<Base title="Open Lifty" description="Opening the Lifty app." noindex bare>
+  <section class="nf">
+    <img src={url('logo.png')} alt="" width="84" height="87" />
+    <h1 data-title>Opening <span class="grad">Lifty.</span></h1>
+    <p class="dim" data-note>One moment.</p>
+    <a class="btn btn-primary" href="lifty://" data-open>Open Lifty</a>
+    <p class="dim" style="margin-top:18px"><a href={url('')}>Back to hellolifty.com</a></p>
+  </section>
+</Base>
+<script>
+  // Mail apps often block links that start with lifty://, so emails link to this page, which opens the app (lifty:// is the app's own address).
+  // On a phone it tries at once; if the app is not installed nothing happens, so after a moment the page says so. A computer has no app to open.
+  const phone = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+  const title = document.querySelector<HTMLElement>('[data-title]');
+  const note = document.querySelector<HTMLElement>('[data-note]');
+  if (!phone) {
+    if (title) title.textContent = 'Open this on your phone.';
+    if (note) note.textContent = 'Lifty opens from the email on the phone where it is installed.';
+  } else {
+    window.location.href = 'lifty://';
+    setTimeout(() => {
+      if (document.hidden) return; // the app opened and the page went to the background
+      if (title) title.textContent = 'Lifty did not open.';
+      if (note) note.textContent = 'Make sure Lifty is installed on this phone, then tap Open Lifty again.';
+    }, 1800);
+  }
+</script>

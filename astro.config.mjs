@@ -12,7 +12,8 @@ export default defineConfig({
   trailingSlash: 'always',
   integrations: [
     sitemap({
-      filter: (page) => !page.endsWith('/404/'),
+      // The 404 page and /open/ (the page emails use to open the app) are utility pages, not something to find in search.
+      filter: (page) => !page.endsWith('/404/') && !page.endsWith('/open/'),
       // Priorities hint at what matters most: the home page, then pricing and the features hub, then the individual pages.
       serialize(item) {
         const path = new URL(item.url).pathname;

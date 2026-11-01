@@ -43,23 +43,24 @@ const sections = [
   <ul>
     <li><strong>Purchase status.</strong> Payments are handled by Apple. We never see your card or Apple ID details. We learn whether you have a trial, a subscription or Lifetime access, and when it started and ends.</li>
     <li><strong>Free trial record.</strong> To keep the free Premium period to once per person, we keep a one-way hash of your email address (a scrambled value that cannot be turned back into the address) when you first sign up. We keep this hash after you delete your account, and use it only to tell that an address has already had a trial.</li>
-    <li><strong>Friends and activity.</strong> Who you are connected with, and the progress shown on challenge boards.</li>
+    <li><strong>Friends and activity.</strong> Who you are connected with, and the progress shown on challenge boards. We also keep when you last opened the Friends tab, so the badge only counts what is new.</li>
+    <li><strong>Push notification token.</strong> If you allow notifications, we keep your phone’s push token and your choices for which notifications you get, so we can tell you when a friend posts or someone comments on or reacts to your post. We remove the token when you sign out.</li>
     <li><strong>Technical data</strong> needed to run the service, such as your app version and the time of a request. The app has no advertising or third-party analytics tools in it.</li>
   </ul>
 
   <h2 id="use">3. How we use it</h2>
   <ul>
     <li>To run Lifty: sign you in, save and sync your training, show your progress, and connect you with friends and challenges.</li>
-    <li>To provide the features you ask for, such as AI plans, coach notes, and sending reminders you set up.</li>
+    <li>To provide the features you ask for, such as AI plans, coach notes and workout recaps, sending the reminders you set up, and the notifications about friends you turn on.</li>
     <li>To manage your subscription or Lifetime access, referrals and rewards, and to ship starter packs.</li>
     <li>To keep Lifty safe: preventing abuse and fraud, handling reports on posts, and enforcing our <a href={url('terms/')}>Terms</a>.</li>
-    <li>To answer your messages, and to send service emails such as sign-in links and receipts. We do not send marketing email unless you ask us to.</li>
+    <li>To answer your messages, and to send service emails such as your welcome email. We do not send marketing email unless you ask us to.</li>
     <li>To understand how the website is used, if you allow analytics (see <a href="#cookies">cookies</a>).</li>
   </ul>
   <p>If you are in the European Economic Area or the UK, our legal bases are: performing our contract with you (running your account and features), our legitimate interests (security, fraud prevention, improving the service), your consent (analytics cookies, and Apple Health access), and legal obligations.</p>
 
   <h2 id="ai">4. AI features</h2>
-  <p>Some features use an AI model to write a response: building a plan, a coach note on your recent training, reading notes or a photo you import, and ideas for Lifty Studio videos. When you use one, we send the relevant information to our AI provider, Anthropic, so it can produce the result. That can include your goals, experience and training preferences, a summary of your recent training, and any text or photo you give it to read. We send only what the feature needs. Plans are drafts you review before they are saved, and suggestions wait for you to apply them. If you would rather not use AI, you can build routines yourself and everything else works.</p>
+  <p>Some features use an AI model to write a response: building a plan, a coach note on your recent training, a short recap of a workout you just finished, reading notes or a photo you import, and ideas for Lifty Studio videos. When you use one, we send the relevant information to our AI provider, Anthropic, so it can produce the result. That can include your goals, experience and training preferences, a summary of your recent training or of the workout being recapped (exercises, sets, volume and records, never your name), and any text or photo you give it to read. We send only what the feature needs. Plans are drafts you review before they are saved, and suggestions wait for you to apply them. If you would rather not use AI, you can build routines yourself and everything else works.</p>
 
   <h2 id="sharing">5. Who can see your information</h2>
   <ul>
@@ -74,18 +75,19 @@ const sections = [
   <p>We use a few service providers who handle information only on our behalf, to deliver Lifty:</p>
   <ul>
     <li><strong>Supabase</strong>: our database, sign-in, file storage and server functions, where your account data lives.</li>
-    <li><strong>Apple</strong>: the App Store (purchases and subscriptions), Apple Health (if you connect it), and the watch.</li>
+    <li><strong>Apple</strong>: Sign in with Apple, the App Store (purchases and subscriptions), Apple Health (if you connect it), and the watch.</li>
+    <li><strong>Google</strong>: signing in on Android.</li>
     <li><strong>Anthropic</strong>: the AI model behind the features in section 4.</li>
-    <li><strong>Resend</strong>: sending sign-in and service emails.</li>
-    <li><strong>Expo / EAS</strong>: delivering app updates to your phone.</li>
+    <li><strong>Resend</strong>: sending service emails such as your welcome email.</li>
+    <li><strong>Expo / EAS</strong>: delivering app updates and push notifications to your phone.</li>
     <li><strong>GitHub Pages</strong>: hosting this website.</li>
     <li><strong>Google Analytics</strong>: website visit counts, only on this website and only as described in section 8.</li>
     <li>The shipping service that delivers a starter pack to the address you gave us.</li>
   </ul>
 
   <h2 id="health">7. Apple Health and permissions</h2>
-  <p>Apple Health is optional and off until you turn it on. If you do, Lifty can save finished workouts and body weight to Health, and read your body weight and any workouts your Apple Watch already recorded, so nothing is counted twice. On your Apple Watch, Lifty records your workout session and shows your heart rate during it. Health data is used only to give you these features. We do not use it for advertising or data brokering, and we do not sell it. You can turn Health access off at any time in the Health app or iPhone Settings.</p>
-  <p>Lifty also asks, only when you use the matching feature, for access to your camera and microphone (to film Lifty Studio videos and scan friend QR codes), your photos (to add pictures and save videos), and notifications (for reminders you set). You can say no or change these in iPhone Settings, and the rest of Lifty keeps working.</p>
+  <p>Apple Health is optional and off until you turn it on. If you do, Lifty can save finished workouts and body weight to Health, and read your body weight and any workouts your Apple Watch already recorded, so nothing is counted twice. On your Apple Watch, Lifty records your workout session and shows your heart rate during it. Lifty can also read your sleep, heart rate variability and resting heart rate to work out a daily readiness score. That is worked out on your phone and is not sent to us. Health data is used only to give you these features. We do not use it for advertising or data brokering, and we do not sell it. You can turn Health access off at any time in the Health app or iPhone Settings.</p>
+  <p>Lifty also asks, only when you use the matching feature, for access to your camera and microphone (to film Lifty Studio videos and scan friend QR codes), your photos (to add pictures and save videos), and notifications (for reminders you set, and for friends’ posts, comments and reactions if you turn those on). You can say no or change these in iPhone Settings, and the rest of Lifty keeps working.</p>
 
   <h2 id="cookies">8. This website and cookies</h2>
   <p>The Lifty app does not use cookies. This website, hellolifty.com, uses Google Analytics to count visits and see which pages are useful. It sets cookies and receives your approximate location, device and browser type, the pages you view, and how you arrived, with your IP address anonymized.</p>

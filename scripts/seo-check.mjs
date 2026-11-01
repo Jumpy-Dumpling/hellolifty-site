@@ -19,7 +19,8 @@ const seenTitles = new Map(), seenDescriptions = new Map();
 for (const file of pages.sort()) {
   const html = readFileSync(file, 'utf8');
   const rel = file.slice(dist.length).replace(/index\.html$/, '') || '/';
-  const is404 = rel === '/404.html';
+  // The 404 page and /open/ (which opens the app from an email) are utility pages: not indexed, not in the sitemap, and exempt from the page-content checks.
+  const is404 = rel === '/404.html' || rel === '/open/';
   const title = decode(attr(html, /<title>([^<]*)<\/title>/));
   const desc = decode(meta(html, 'description'));
   const canonical = attr(html, /<link rel="canonical" href="([^"]*)"/);
@@ -54,7 +55,7 @@ for (const file of pages.sort()) {
     }
     if (meta(html, 'twitter:image') !== img) fail(rel, 'twitter:image differs from og:image');
     if (noindex) fail(rel, 'is marked noindex');
-  } else if (!noindex) fail(rel, '404 page should be noindex');
+  } else if (!noindex) fail(rel, 'utility page (404, /open/) should be noindex');
 
   // structured data
   const blocks = [...html.matchAll(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/g)].map((m) => m[1]);
@@ -92,8 +93,8 @@ if (existsSync(join(dist, 'sitemap-0.xml'))) {
   const urls = [...sm.matchAll(/<loc>([^<]*)<\/loc>/g)].map((m) => m[1]);
   console.log(`  sitemap lists ${urls.length} pages`);
   if (urls.some((u) => !u.startsWith('https://'))) fail('sitemap', `has non-https addresses: ${urls.filter((u) => !u.startsWith('https://')).join(', ')}`);
-  for (const f of pages) { const rel = f.slice(dist.length).replace(/index\.html$/, '') || '/'; if (rel === '/404.html') continue; if (!urls.includes(SITE + rel)) fail('sitemap', `missing ${rel}`); }
-  if (urls.some((u) => u.includes('404'))) fail('sitemap', 'lists the 404 page');
+  for (const f of pages) { const rel = f.slice(dist.length).replace(/index\.html$/, '') || '/'; if (rel === '/404.html' || rel === '/open/') continue; if (!urls.includes(SITE + rel)) fail('sitemap', `missing ${rel}`); }
+  if (urls.some((u) => u.includes('404') || u.endsWith('/open/'))) fail('sitemap', 'lists a utility page (404 or /open/)');
   if (!/<lastmod>/.test(sm)) warn('sitemap', 'no lastmod dates');
 }
 console.log(`\n${pages.length} pages checked: ${failures} failure(s), ${warnings} warning(s)`);
