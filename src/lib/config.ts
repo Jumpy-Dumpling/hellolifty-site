@@ -7,8 +7,9 @@ export const PRICE_LIFETIME = money(PRICES.lifetime);
 export const YEARLY_PER_MONTH = money(PRICES.yearly / 12);
 export const YEARLY_SAVINGS_PERCENT = Math.round((1 - PRICES.yearly / (PRICES.monthly * 12)) * 100);
 
-export const TRIAL_DAYS = 7;
-export const REFERRAL_TRIAL_DAYS = 14;
+/** Free Premium every new account starts with, no card needed. The app grants it on the server; see the app's lib/purchases.ts. */
+export const TRIAL_DAYS = 30;
+export const REFERRAL_TRIAL_DAYS = 60;
 
 /**
  * The waitlist talks to the Lifty Supabase project. The publishable key is meant to be public (it ships inside the app too);

@@ -6,6 +6,7 @@ import Scrub from '../components/Scrub.astro';
 import Story from '../components/Story.astro';
 import Bento from '../components/Bento.astro';
 import Pricing from '../components/Pricing.astro';
+import FreeVsPremium from '../components/FreeVsPremium.astro';
 import Waitlist from '../components/Waitlist.astro';
 import Faq from '../components/Faq.astro';
 import { homeFaq } from '../data/faqs';
@@ -16,6 +17,7 @@ const jsonLd = [pageGraph('WebPage', SITE_TITLE, SITE_DESCRIPTION, '', Astro.sit
 <Base title={SITE_TITLE} description={SITE_DESCRIPTION} image="og/home.jpg" imageAlt="Lifty: Train like it matters. A strength training app for iPhone and Android." preload="screens/today.webp" jsonLd={jsonLd}>
   <Hero />
   <Marquee />
+  <FreeVsPremium />
   <Scrub />
   <Story />
   <Bento />

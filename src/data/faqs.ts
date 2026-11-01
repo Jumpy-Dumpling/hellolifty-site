@@ -3,7 +3,7 @@ import { LINKS, TRIAL_DAYS, REFERRAL_TRIAL_DAYS, PRICE_MONTHLY, PRICE_YEARLY, PR
 /** The questions shown on the page and the ones in the page's FAQ structured data come from here, so they can never disagree. */
 export const homeFaq: [string, string][] = [
   ['When does Lifty launch?', "Soon. Join the waitlist and you'll get one email the day it's available on the App Store and Google Play."],
-  ['Is there a free version?', `Lifty has no free tier. Every plan starts with a ${TRIAL_DAYS}-day free trial, so you can try everything before you pay. If a friend invited you, the trial is ${REFERRAL_TRIAL_DAYS} days.`],
+  ['Is there a free version?', `Yes. Logging, your workout history, importing from Strong or Hevy, friends, challenges and the Apple Watch app are free for good. Premium adds the adaptive coach, AI plans, deeper analytics and the full Studio. Every new account starts with ${TRIAL_DAYS} days of Premium and no card, or ${REFERRAL_TRIAL_DAYS} days if a friend invited you, then simply keeps the free version unless you upgrade.`],
   ['Which phones does it work on?', 'Lifty is coming to both iPhone and Android. The Apple Watch app is part of the iPhone version.'],
   ['Can I bring my workout history?', 'Yes. Import your history from Strong or Hevy, and your records and trends come with you.'],
   ['Do I need a connection to log a workout?', "No. Workouts are saved on your phone first and back up to your account when you're online. Friends and the AI coach need a connection."],
@@ -12,9 +12,9 @@ export const homeFaq: [string, string][] = [
 ];
 
 export const pricingFaq: [string, string][] = [
-  ['Is there a free plan?', `No. Every plan includes everything, and each starts with a ${TRIAL_DAYS}-day free trial so you can try it all first.`],
-  ['How does the free trial work?', `You start a monthly or yearly plan and get ${TRIAL_DAYS} days free. If you cancel before the trial ends, you are not charged. If a friend invited you, the trial is ${REFERRAL_TRIAL_DAYS} days.`],
-  ['What is the difference between the plans?', `Nothing about the features: every plan includes all of Lifty. Monthly is ${PRICE_MONTHLY} a month, Yearly is ${PRICE_YEARLY} a year, and Lifetime is ${PRICE_LIFETIME} once.`],
+  ['Is there a free plan?', `Yes. Lifty is free to start and the basics stay free: logging every set, your history, four routines, importing, friends and challenges, and the Apple Watch app. Premium is ${PRICE_MONTHLY} a month, ${PRICE_YEARLY} a year, or ${PRICE_LIFETIME} once.`],
+  ['How does the free Premium period work?', `Make an account and you get ${TRIAL_DAYS} days of Premium, with no card and nothing to cancel (${REFERRAL_TRIAL_DAYS} days if a friend invited you). When it ends you are not charged: you keep the free version, with all your workouts and history, and can upgrade any time.`],
+  ['What is the difference between the plans?', `Monthly, Yearly and Lifetime all include the same Premium features. Monthly is ${PRICE_MONTHLY} a month, Yearly is ${PRICE_YEARLY} a year, and Lifetime is ${PRICE_LIFETIME} once. What Premium adds over the free version is the adaptive coach, AI plans, suggested weights, deeper analytics, body measurements and photos, unlimited routines, and the full Studio.`],
   ['What does Lifetime include?', 'Lifty for good, with nothing more to pay, plus a Lifty starter pack: a tank or T-shirt, gym socks and a drawstring bag. It unlocks 30 days after you buy (a short wait that helps protect accounts from misuse and fraud), then you choose a tank or T-shirt and send your mailing address from Settings, and the app tracks it until it ships. It is a limited-time offer and will not always be available.'],
   ['How do I cancel?', 'Subscriptions are managed in your Apple ID or Google Play settings, and you can cancel any time. Lifetime is a one-time purchase with nothing to cancel.'],
   ['Where do I pay?', 'Purchases go through the App Store or Google Play, so payment and renewals are handled by Apple or Google, not by Lifty.'],

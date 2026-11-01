@@ -1,5 +1,5 @@
 import { url } from './url';
-import { PRICES, TRIAL_DAYS } from './config';
+import { PRICES } from './config';
 
 export const SITE_NAME = 'Lifty';
 export const SITE_URL = 'https://hellolifty.com';
@@ -43,9 +43,10 @@ export function appGraph(site: URL | undefined) {
     featureList: ['Fast set logging with a rest timer and plate calculator', 'AI-built workout plans and proven programs', 'Adaptive coach with written training reviews',
       'Progress analytics, body measurements and progress photos', 'Friends, a workout feed and a weekly leaderboard', 'Challenges', 'Lifty Studio for gym videos', 'Apple Watch app, widgets and Live Activity'],
     offers: [
-      offer(`Monthly (${TRIAL_DAYS}-day free trial)`, PRICES.monthly, { priceSpecification: { '@type': 'UnitPriceSpecification', price: PRICES.monthly.toFixed(2), priceCurrency: 'USD', billingDuration: 1, unitCode: 'MON' } }),
-      offer(`Yearly (${TRIAL_DAYS}-day free trial)`, PRICES.yearly, { priceSpecification: { '@type': 'UnitPriceSpecification', price: PRICES.yearly.toFixed(2), priceCurrency: 'USD', billingDuration: 1, unitCode: 'ANN' } }),
+      offer('Premium monthly', PRICES.monthly, { priceSpecification: { '@type': 'UnitPriceSpecification', price: PRICES.monthly.toFixed(2), priceCurrency: 'USD', billingDuration: 1, unitCode: 'MON' } }),
+      offer('Premium yearly', PRICES.yearly, { priceSpecification: { '@type': 'UnitPriceSpecification', price: PRICES.yearly.toFixed(2), priceCurrency: 'USD', billingDuration: 1, unitCode: 'ANN' } }),
       offer('Lifetime (limited time)', PRICES.lifetime),
+      offer('Free plan', 0),
     ],
   };
 }

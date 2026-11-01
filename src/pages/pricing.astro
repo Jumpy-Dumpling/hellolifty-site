@@ -9,22 +9,24 @@ import { crumbGraph, faqGraph, pageGraph, appGraph } from '../lib/seo';
 import { TRIAL_DAYS, REFERRAL_TRIAL_DAYS, PRICE_MONTHLY, PRICE_YEARLY, PRICE_LIFETIME } from '../lib/config';
 
 const groups = [
-  { icon: 'sparkles', c1: '#5CC8FF', c2: '#12A8D6', title: 'Plan', items: ['AI-built programs for your goal and schedule', 'Proven templates and your own routines', 'Import from notes, a photo, Strong or Hevy'] },
-  { icon: 'timer', c1: '#37A2FF', c2: '#0A62F0', title: 'Train', items: ['Fast set logging with last session beside every set', 'Rest timers, plate calculator and supersets', 'Cardio, timed holds and band work'] },
-  { icon: 'pulse', c1: '#2FD0A0', c2: '#0E9CC8', title: 'Understand', items: ['Adaptive coach and written training reviews', 'Volume by muscle, estimated 1RM and streaks', 'Weight, measurements and private progress photos'] },
-  { icon: 'people', c1: '#FF7A93', c2: '#E5334B', title: 'Connect', items: ['Friends, a feed, reactions and a weekly leaderboard', 'Challenges, solo or with your crew', 'Lifty Studio for gym videos'] },
-  { icon: 'watch', c1: '#4C7DFF', c2: '#1B2F66', title: 'Everywhere', items: ['Apple Watch app, widgets and a lock screen Live Activity', 'Works offline, backs up when you reconnect', 'Export your data as a CSV any time'] },
+  { icon: 'timer', c1: '#37A2FF', c2: '#0A62F0', title: 'Train (free)', items: ['Fast set logging with last session beside every set', 'Rest timers, plate calculator and supersets', 'Cardio, timed holds, four routines and 870+ exercises'] },
+  { icon: 'ribbon', c1: '#FFC857', c2: '#F08A0C', title: 'Bring it with you (free)', items: ['Import your history from Strong or Hevy', 'Backs up and syncs your workouts, works offline', 'Export your data as a CSV any time'] },
+  { icon: 'people', c1: '#FF7A93', c2: '#E5334B', title: 'Connect (free)', items: ['Friends, a feed, reactions and a weekly leaderboard', 'Join challenges, solo or with your crew', 'Apple Watch app, widgets and a lock screen Live Activity'] },
+  { icon: 'pulse', c1: '#2FD0A0', c2: '#0E9CC8', title: 'Coach (Premium)', items: ['A written coach note every month, and a recap after each workout', 'Suggested weights and deload calls in every workout', 'Your first coach note is free'] },
+  { icon: 'sparkles', c1: '#5CC8FF', c2: '#12A8D6', title: 'Plan (Premium)', items: ['AI-built programs, twenty a month, and plans from a photo', 'Unlimited routines and every program, including 5/3/1', 'Seasonal themes'] },
+  { icon: 'watch', c1: '#4C7DFF', c2: '#1B2F66', title: 'Understand (Premium)', items: ['Strength levels for every lift, with a forecast', 'Muscle balance, lift goals and your full history', 'Streak freezes and a daily readiness read from Apple Health', 'Nine measurements and private progress photos'] },
+  { icon: 'people', c1: '#8B6CFF', c2: '#5B3BE8', title: 'Create (Premium)', items: ['Lifty Studio AI video ideas and cloud backup for your clips', 'More original music for your videos', 'Gift a month of Premium to a friend, and a star beside your name'] },
 ];
 const title = `Lifty Pricing: ${PRICE_MONTHLY} a Month, ${PRICE_YEARLY} a Year or ${PRICE_LIFETIME} Once`;
-const description = `Try Lifty free for ${TRIAL_DAYS} days. Then ${PRICE_MONTHLY} a month, ${PRICE_YEARLY} a year, or ${PRICE_LIFETIME} once for Lifetime. Every plan includes every feature.`;
+const description = `Lifty is free to start: logging, history, friends and the Apple Watch cost nothing. Premium is ${PRICE_MONTHLY} a month or ${PRICE_YEARLY} a year, with ${TRIAL_DAYS} days free.`;
 const jsonLd = [pageGraph('WebPage', title, description, 'pricing/', Astro.site, { about: { '@id': 'https://hellolifty.com/#app' } }), appGraph(Astro.site), crumbGraph([['Pricing', 'pricing/']], Astro.site), faqGraph(pricingFaq)];
 ---
-<Base title={title} description={description} image="og/pricing.jpg" imageAlt="Lifty pricing: free for 7 days, then monthly, yearly or lifetime" jsonLd={jsonLd}>
-  <SimpleHero kicker="Pricing" title="One plan. Everything" accent="included." lede={`Start with ${TRIAL_DAYS} days free. Then pick monthly or yearly, or pay once and own it.`} />
+<Base title={title} description={description} image="og/pricing.jpg" imageAlt="Lifty pricing: free to start, with Premium monthly, yearly or lifetime" jsonLd={jsonLd}>
+  <SimpleHero kicker="Pricing" title="Free to start. Premium for" accent="more." lede={`Every new account gets ${TRIAL_DAYS} days of Premium, no card needed. After that, keep logging for free, or pick monthly, yearly or pay once.`} />
   <Pricing bare />
   <section class="included">
     <div class="wrap">
-      <div class="head reveal"><span class="kicker">What is included</span><h2>All of Lifty, on every plan<span class="grad">.</span></h2></div>
+      <div class="head reveal"><span class="kicker">What is included</span><h2>What you get<span class="grad">.</span></h2></div>
       <div class="inc-grid">
         {groups.map((g, i) => (
           <article class="inc reveal" style={`--d:${(i % 2) * 0.07}s`}>
@@ -39,8 +41,8 @@ const jsonLd = [pageGraph('WebPage', title, description, 'pricing/', Astro.site,
     <div class="wrap">
       <div class="head reveal"><span class="kicker">How it works</span><h2>Simple from the first day<span class="grad">.</span></h2></div>
       <div class="how-grid">
-        <article class="how-card reveal"><h3>Start free</h3><p>Pick monthly or yearly and get {TRIAL_DAYS} days free. A friend's code makes it {REFERRAL_TRIAL_DAYS}.</p></article>
-        <article class="how-card reveal" style="--d:.07s"><h3>Keep going, or don't</h3><p>Cancel any time in your Apple ID or Google Play settings. Cancel before the trial ends and you pay nothing.</p></article>
+        <article class="how-card reveal"><h3>Start free</h3><p>Make an account and get {TRIAL_DAYS} days of Premium, no card needed. A friend's code makes it {REFERRAL_TRIAL_DAYS}.</p></article>
+        <article class="how-card reveal" style="--d:.07s"><h3>Keep going, or don't</h3><p>When the {TRIAL_DAYS} days end, nothing is charged. You keep logging, your history and your friends for free, and can upgrade any time.</p></article>
         <article class="how-card reveal" style="--d:.14s"><h3>Or pay once</h3><p>Lifetime is a single purchase with a starter pack in the mail 30 days after you buy, while the limited-time offer lasts.</p></article>
       </div>
     </div>
