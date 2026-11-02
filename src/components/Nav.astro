@@ -1,8 +1,6 @@
 ---
 import { features } from '../data/features';
 import { url } from '../lib/url';
-const left = features.slice(0, 4);
-const right = features.slice(4);
 const path = Astro.url.pathname;
 const current = (p: string) => (path === p || path.startsWith(p) && p !== '/' ? 'current' : '');
 ---
@@ -22,35 +20,87 @@ const current = (p: string) => (path === p || path.startsWith(p) && p !== '/' ? 
 
     <div class="mega" id="mega" role="region" aria-label="Features">
       <div class="mega-panel">
-        <div class="mega-intro">
-          <small>Features</small>
-          <p class="mega-title">Everything you need to train, in one place.</p>
-          <p>Planning, logging, coaching, progress and your crew, working together.</p>
-          <a class="all" href={url('features/')}>See all features<i class="i i-arrow-forward"></i></a>
-        </div>
-        <div class="mega-col">
-          {left.map((f) => (
-            <a class="mi" href={url(`features/${f.slug}/`)} style={`--c1:${f.ink};--pastel:${f.pastel}`}>
-              <span class="mi-ico"><i class={`i i-${f.icon}`}></i></span>
-              <span><b>{f.name}</b><small>{f.menu}</small></span>
+        <nav class="mlist" aria-label="Features">
+          {features.map((f, i) => (
+            <a class={`ml ${i === 0 ? 'on' : ''}`} href={url(`features/${f.slug}/`)} data-slug={f.slug} data-name={f.name} data-desc={f.menu} data-ink={f.ink} data-pastel={f.pastel} style={`--c1:${f.ink};--pastel:${f.pastel}`}>
+              <span class="ml-ico"><i class={`i i-${f.icon}`}></i></span>
+              <b>{f.name}</b>
+              <i class="i i-arrow-forward ml-go"></i>
             </a>
           ))}
+          <a class="mall" href={url('features/')}>See every feature<i class="i i-arrow-forward"></i></a>
+        </nav>
+
+        <div class="mstage" data-stage style={`--pastel:${features[0].pastel};--c1:${features[0].ink}`}>
+          <div class="mhead">
+            <p class="mname" data-name>{features[0].name}</p>
+            <p class="mdesc" data-desc>{features[0].menu}</p>
+          </div>
+          <div class="mscene" aria-hidden="true">
+            {features.map((f, i) => (
+              <div class={`scene ${i === 0 ? 'on' : ''}`} data-scene={f.slug}>
+                {f.slug === 'set-logging' && (
+                  <div class="mcard viz-sets">
+                    <div class="srow done"><span>1</span><em>185 &times; 10</em><i class="i i-checkmark"></i></div>
+                    <div class="srow done"><span>2</span><em>185 &times; 10</em><i class="i i-checkmark"></i></div>
+                    <div class="srow done pr"><span>3</span><em>190 &times; 9</em><b>PR</b><i class="i i-checkmark"></i></div>
+                    <div class="srow live"><span>4</span><em>190 &times; <u></u></em><i class="i i-checkmark"></i></div>
+                    <div class="rest"><i class="i i-timer"></i>Rest 1:30</div>
+                  </div>
+                )}
+                {f.slug === 'plans' && (
+                  <div class="mcard viz-plan">
+                    <div class="week">{['M', 'T', 'W', 'T', 'F', 'S', 'S'].map((d, n) => <span class={[0, 2, 4, 5].includes(n) ? 'on' : ''} style={`--i:${n}`}>{d}</span>)}</div>
+                    <div class="plan-card"><div><b>Push Day</b><span>6 exercises &middot; 18 sets</span></div><i class="i i-play"></i><em class="meter"><i></i></em></div>
+                  </div>
+                )}
+                {f.slug === 'coach' && (
+                  <div class="mcard viz-coach">
+                    <div class="note"><i class="i i-sparkles"></i><p class="typed">Add 5 lb to Bench Press once all sets reach 10 reps.</p></div>
+                    <div class="note n2"><i class="i i-calendar"></i><p>Deload in 3 days. Your block has it booked.</p></div>
+                    <div class="blk"><span style="--i:0">W3</span><span style="--i:1">W4</span><span class="push" style="--i:2">W5</span><span class="dl" style="--i:3">W6</span></div>
+                  </div>
+                )}
+                {f.slug === 'progress' && (
+                  <div class="mcard">
+                    <div class="viz-stats">
+                      <div class="ringbox"><svg viewBox="0 0 90 90"><circle cx="45" cy="45" r="38" /><circle class="fg" cx="45" cy="45" r="38" stroke-dasharray="238.8 238.8" style="--c:238.8" /></svg><b>4/4</b></div>
+                      <div class="bars">{[38, 62, 48, 80, 66, 94].map((h, n) => <i style={`--h:${h}%;--i:${n}`}></i>)}</div>
+                    </div>
+                    <div class="alertchip"><i class="i i-pulse"></i>Back Squat has stalled for 5 weeks</div>
+                  </div>
+                )}
+                {f.slug === 'friends' && (
+                  <div class="mcard viz-crew">
+                    <div class="faces"><span style="--c1:#2FD0A0;--c2:#0E9CC8;--i:0">MR</span><span style="--c1:#9B7BFF;--c2:#5B3BE8;--i:1">SK</span><span style="--c1:#FFC857;--c2:#F08A0C;--i:2">AL</span><span style="--c1:#FF9A4D;--c2:#EE3F5A;--i:3">JT</span></div>
+                    <div class="rank"><b>#2</b><span>of 14 this week</span><i class="i i-trophy"></i></div>
+                    <div class="cheer"><i class="i i-heart"></i>MR cheered your record</div>
+                  </div>
+                )}
+                {f.slug === 'challenges' && (
+                  <div class="mcard chal">
+                    <div class="row"><b>Four this week</b><span>3 of 4</span></div>
+                    <div class="track"><i></i><em class="i i-flag"></em></div>
+                    <div class="done"><i class="i i-trophy"></i>Challenge complete</div>
+                  </div>
+                )}
+                {f.slug === 'studio' && (
+                  <div class="mcard viz-studio">
+                    <div class="flow"><span style="--i:0"><i class="i i-bulb"></i>Pick</span><u></u><span style="--i:1"><i class="i i-videocam"></i>Film</span><u></u><span style="--i:2"><i class="i i-paper-plane"></i>Post</span></div>
+                    <div class="recdot"><i></i>REC 0:12</div>
+                  </div>
+                )}
+                {f.slug === 'watch' && (
+                  <div class="mcard viz-wrist">
+                    <div class="watch"><div class="screen"><em class="away"><i class="i i-phone-portrait"></i>Saved here</em><small>Bench Press</small><b>Set 4</b><span>190 lb &times; 8</span><i class="i i-checkmark"></i></div></div>
+                    <div class="widget"><img class="wlogo" src={url('logo.png')} alt="" width="22" height="22" loading="lazy" /><small>Today</small><b>Push Day</b><div class="meter"><i></i></div></div>
+                  </div>
+                )}
+              </div>
+            ))}
+          </div>
+          <a class="mgo" href={url(`features/${features[0].slug}/`)} data-go>Explore<i class="i i-arrow-forward"></i></a>
         </div>
-        <div class="mega-col">
-          {right.map((f) => (
-            <a class="mi" href={url(`features/${f.slug}/`)} style={`--c1:${f.ink};--pastel:${f.pastel}`}>
-              <span class="mi-ico"><i class={`i i-${f.icon}`}></i></span>
-              <span><b>{f.name}</b><small>{f.menu}</small></span>
-            </a>
-          ))}
-        </div>
-        <a class="mega-promo" href="#waitlist">
-          <span class="tag">Coming soon</span>
-          <p class="promo-title">Lifty is almost here.</p>
-          <p>Coming to iOS and Android. Be first in line.</p>
-          <span class="link">Join the waitlist<i class="i i-arrow-forward"></i></span>
-          <span class="promo-phone"><img src={url('screens/today.webp')} alt="" width="780" height="1688" loading="lazy" /></span>
-        </a>
       </div>
     </div>
   </div>

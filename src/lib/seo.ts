@@ -41,7 +41,7 @@ export function appGraph(site: URL | undefined) {
     description: SITE_DESCRIPTION, applicationCategory: 'HealthApplication', applicationSubCategory: 'Strength training and workout tracker',
     operatingSystem: 'iOS, Android', image: abs(DEFAULT_OG, site), publisher: { '@id': `${SITE_URL}/#organization` },
     featureList: ['Fast set logging with a rest timer and plate calculator', 'AI-built workout plans and proven programs', 'Adaptive coach with written training reviews',
-      'Progress analytics, body measurements and progress photos', 'Friends, a workout feed and a weekly leaderboard', 'Challenges', 'Lifty Studio for gym videos', 'Apple Watch app, widgets and Live Activity'],
+      'Progress analytics with plateau alerts, body measurements and progress photos', 'Training blocks with deload weeks booked ahead', 'Friends, a workout feed and a weekly leaderboard', 'Challenges', 'Lifty Studio for gym videos', 'Apple Watch app that works without the phone, lock screen widgets and Live Activity'],
     offers: [
       offer('Premium monthly', PRICES.monthly, { priceSpecification: { '@type': 'UnitPriceSpecification', price: PRICES.monthly.toFixed(2), priceCurrency: 'USD', billingDuration: 1, unitCode: 'MON' } }),
       offer('Premium yearly', PRICES.yearly, { priceSpecification: { '@type': 'UnitPriceSpecification', price: PRICES.yearly.toFixed(2), priceCurrency: 'USD', billingDuration: 1, unitCode: 'ANN' } }),

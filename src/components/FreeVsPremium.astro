@@ -1,41 +1,57 @@
 ---
 import { TRIAL_DAYS, REFERRAL_TRIAL_DAYS } from '../lib/config';
-const free = [
-  ['Log every set', 'with last time beside it, a rest timer, plates and supersets'],
-  ['Your whole history', 'records, estimated maxes, streaks and four routines'],
-  ['Bring your history', 'import from Strong or Hevy in a minute'],
-  ['Train with friends', 'a feed, reactions, challenges, a weekly leaderboard and optional notifications'],
-  ['Apple Watch', 'log a set from your wrist, with widgets and a Live Activity'],
-  ['Yours to keep', 'cloud backup, offline logging and CSV export'],
+// One tile per capability, interleaved so each free thing sits beside the Premium step up from it. Order reads as pairs of rows.
+type Tile = { tier: 'free' | 'premium'; icon: string; c1: string; c2: string; title: string; text: string };
+const tiles: Tile[] = [
+  { tier: 'free', icon: 'timer', c1: '#37A2FF', c2: '#0A62F0', title: 'Log every set', text: 'Last time beside each set, a rest timer, plates and supersets.' },
+  { tier: 'premium', icon: 'trending-up', c1: '#FFC857', c2: '#F08A0C', title: 'Know what to lift next', text: 'Weight and reps filled in from how your last sessions went.' },
+  { tier: 'free', icon: 'cloud-upload', c1: '#5CC8FF', c2: '#12A8D6', title: 'Bring your history', text: 'Import from Strong or Hevy in a minute.' },
+  { tier: 'premium', icon: 'sparkles', c1: '#FFC857', c2: '#F08A0C', title: 'AI plans', text: 'Twenty a month, built for your goal, schedule and gear.' },
+  { tier: 'free', icon: 'people', c1: '#FF7A93', c2: '#E5334B', title: 'Train with friends', text: 'A feed, reactions, challenges and a weekly leaderboard.' },
+  { tier: 'premium', icon: 'pulse', c1: '#FFC857', c2: '#F08A0C', title: 'An adaptive coach', text: 'A written note every month and a recap after each workout.' },
+  { tier: 'free', icon: 'watch', c1: '#4C7DFF', c2: '#1B2F66', title: 'Apple Watch, no phone needed', text: 'Run a workout from your wrist. Widgets and a Live Activity too.' },
+  { tier: 'premium', icon: 'calendar', c1: '#FFC857', c2: '#F08A0C', title: 'Training blocks', text: 'Plan 4 to 12 weeks with the deload weeks booked ahead.' },
+  { tier: 'free', icon: 'trophy', c1: '#2FD0A0', c2: '#0E9CC8', title: 'Records and streaks', text: 'Estimated maxes, personal records and a weekly streak.' },
+  { tier: 'premium', icon: 'analytics', c1: '#FFC857', c2: '#F08A0C', title: 'Insights and plateau alerts', text: 'Every lift’s trend, and a heads-up when one stops moving.' },
+  { tier: 'free', icon: 'lock-closed', c1: '#8B6CFF', c2: '#5B3BE8', title: 'Yours to keep', text: 'Cloud backup, offline logging and a CSV export any time.' },
+  { tier: 'premium', icon: 'barbell', c1: '#FFC857', c2: '#F08A0C', title: 'Know where you stand', text: 'Strength levels, muscle balance, readiness and streak freezes.' },
 ];
-const premium = [
-  ['An adaptive coach', 'a written note every month, with a recap after each workout'],
-  ['AI plans', 'twenty a month, plus today’s weight and reps filled in for every lift'],
-  ['Know where you stand', 'strength levels, muscle balance, lift goals and your full history'],
-  ['Protect your streak', 'freezes, plus a daily readiness read from Apple Health'],
-  ['The full Studio', 'AI video ideas, clip backup and more music'],
-  ['Unlimited, and generous', 'no routine limit, every program, themes, and gift a month to a friend'],
-];
+const free = tiles.filter((t) => t.tier === 'free').length;
 ---
 <section class="fvp" id="free">
   <div class="wrap">
     <div class="head reveal">
       <span class="kicker">Free to start</span>
       <h2>Everything you need to train, <span class="grad">free.</span></h2>
-      <p>Lifty is a complete workout tracker at no cost. Premium adds the coach and the deeper insight, whenever you want it.</p>
+      <p>Lifty is a complete workout tracker at no cost. Premium is the coach and the deeper insight, whenever you want it.</p>
     </div>
-    <div class="fvp-grid">
-      <article class="fvp-card reveal">
-        <h3>Free <span class="tier free">Always</span></h3>
-        <p class="sub">The whole tracker, no card needed.</p>
-        <ul>{free.map(([t, d]) => <li><i class="i i-checkmark-circle"></i><span>{t} <em>{d}</em></span></li>)}</ul>
-      </article>
-      <article class="fvp-card prem reveal" style="--d:.08s">
-        <h3>Premium <span class="tier premium">Optional</span></h3>
-        <p class="sub">For when you want a coach in your corner.</p>
-        <ul>{premium.map(([t, d]) => <li><i class="i i-star"></i><span>{t} <em>{d}</em></span></li>)}</ul>
-      </article>
+
+    <div class="seg reveal" role="group" aria-label="Show features by plan" data-seg>
+      <button type="button" aria-pressed="true" data-show="all">All <em>{tiles.length}</em></button>
+      <button type="button" aria-pressed="false" data-show="free"><i class="dot free"></i>Free <em>{free}</em></button>
+      <button type="button" aria-pressed="false" data-show="premium"><i class="dot prem"></i>Premium <em>{tiles.length - free}</em></button>
     </div>
-    <p class="fvp-note reveal">Every new account starts with {TRIAL_DAYS} days of Premium, no card needed ({REFERRAL_TRIAL_DAYS} if a friend invited you). After that you keep the free app.</p>
+
+    <div class="fvp-grid" data-fvp>
+      {tiles.map((t, i) => (
+        <article class={`fvp-tile ${t.tier} spot reveal`} data-tier={t.tier} style={`--d:${(i % 3) * 0.07}s;--c1:${t.c1};--c2:${t.c2}`}>
+          <div class="top"><i class={`ico i i-${t.icon}`}></i><span class={`pip ${t.tier}`}>{t.tier === 'free' ? 'Free' : <><i class="i i-star"></i>Premium</>}</span></div>
+          <h3>{t.title}</h3>
+          <p>{t.text}</p>
+        </article>
+      ))}
+    </div>
+
+    <p class="fvp-note reveal"><i class="i i-gift"></i>Every new account starts with {TRIAL_DAYS} days of Premium, no card needed ({REFERRAL_TRIAL_DAYS} if a friend invited you). After that you keep the free app.</p>
   </div>
 </section>
+
+<script>
+  // The plan filter: shows every tile, only the free ones, or only the Premium ones. Without JavaScript all of them just stay visible.
+  const seg = document.querySelector<HTMLElement>('[data-seg]');
+  const grid = document.querySelector<HTMLElement>('[data-fvp]');
+  seg?.querySelectorAll<HTMLButtonElement>('button').forEach((b) => b.addEventListener('click', () => {
+    seg.querySelectorAll('button').forEach((o) => o.setAttribute('aria-pressed', String(o === b)));
+    if (grid) grid.dataset.show = b.dataset.show;
+  }));
+</script>

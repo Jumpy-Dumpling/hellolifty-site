@@ -35,7 +35,7 @@ const href = (s: string) => url(`features/${s}/`);
 
       <a class="tile spot reveal" href={href('coach')}>
         <div class="viz viz-coach"><div class="note"><i class="i i-sparkles"></i><p class="typed">Add 5 lb to Bench Press once all sets reach 10 reps.</p></div><div class="note n2"><i class="i i-trending-up"></i><p>Legs are running a little low. Add a session this week.</p></div></div>
-        <div class="tile-copy"><h3>An adaptive coach</h3><p>Spots stalled lifts, calls deload weeks and tells you when to add weight.</p><span class="more">Meet the coach<i class="i i-arrow-forward"></i></span></div>
+        <div class="tile-copy"><h3>An adaptive coach</h3><p>Spots stalled lifts, books your deload weeks in a training block and tells you when to add weight.</p><span class="more">Meet the coach<i class="i i-arrow-forward"></i></span></div>
       </a>
 
       <a class="tile spot reveal" style="--d:.08s" href={href('progress')}>
@@ -43,7 +43,7 @@ const href = (s: string) => url(`features/${s}/`);
           <div class="ringbox"><svg viewBox="0 0 90 90"><circle cx="45" cy="45" r="38" /><circle class="fg" cx="45" cy="45" r="38" stroke-dasharray={`${C} ${C}`} style={`--c:${C}`} /></svg><b>4/4</b></div>
           <div class="bars">{bars.map((h, i) => <i style={`--h:${h}%;--i:${i}`}></i>)}</div>
         </div>
-        <div class="tile-copy"><h3>Analytics that explain</h3><p>Weekly volume for every muscle, your best weight at each rep count, and a trend for every lift.</p><span class="more">See progress<i class="i i-arrow-forward"></i></span></div>
+        <div class="tile-copy"><h3>Analytics that explain</h3><p>This month against last, weekly volume for every muscle, and a trend for every lift with an alert when one stalls.</p><span class="more">See progress<i class="i i-arrow-forward"></i></span></div>
       </a>
 
       <a class="tile spot reveal" style="--d:.16s" href={href('friends')}>
@@ -62,10 +62,10 @@ const href = (s: string) => url(`features/${s}/`);
       </a>
 
       <a class="tile spot wide reveal" style="--d:.08s" href={href('watch')}>
-        <div class="tile-copy"><i class="ico i i-watch" style="--c1:#4C7DFF;--c2:#1B2F66"></i><h3>On your wrist and your lock screen</h3><p>Tap your Apple Watch to log a set. Home screen widgets and a Live Activity keep your workout in view, no phone in hand.</p><span class="more">See the watch app<i class="i i-arrow-forward"></i></span></div>
+        <div class="tile-copy"><i class="ico i i-watch" style="--c1:#4C7DFF;--c2:#1B2F66"></i><h3>On your wrist, no phone needed</h3><p>Run a whole workout from your Apple Watch with your iPhone at home, and send it back when you are in range. Lock screen widgets and a Live Activity keep your week in view.</p><span class="more">See the watch app<i class="i i-arrow-forward"></i></span></div>
         <div class="viz viz-wrist">
-          <div class="watch"><div class="screen"><small>Bench Press</small><b>Set 4</b><span>190 lb &times; 8</span><i class="i i-checkmark"></i></div></div>
-          <div class="widget"><small>Today</small><b>Push Day</b><div class="meter"><i></i></div></div>
+          <div class="watch"><div class="screen"><em class="away"><i class="i i-phone-portrait"></i>Saved here</em><small>Bench Press</small><b>Set 4</b><span>190 lb &times; 8</span><i class="i i-checkmark"></i></div></div>
+          <div class="widget"><img class="wlogo" src={url('logo.png')} alt="" width="22" height="22" loading="lazy" /><small>Today</small><b>Push Day</b><div class="meter"><i></i></div></div>
         </div>
       </a>
     </div>

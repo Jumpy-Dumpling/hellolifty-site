@@ -1,6 +1,7 @@
 ---
 import Phone from './Phone.astro';
 import type { Feature } from '../data/features';
+import { url } from '../lib/url';
 interface Props { feature: Feature }
 const { feature: f } = Astro.props;
 ---
@@ -18,14 +19,21 @@ const { feature: f } = Astro.props;
           {s.screen && <Phone src={s.screen} alt={`Lifty ${f.name} screen: ${s.title}`} />}
           {s.visual === 'watch' && (
             <div class="gizmo">
-              <div class="watch"><div class="screen"><small>Bench Press</small><b>Set 4</b><span>190 lb &times; 8</span><i class="i i-checkmark"></i></div></div>
-              <div class="widget"><small>Today</small><b>Push Day</b><div class="meter"><i></i></div></div>
+              <div class="watch"><div class="screen"><em class="away"><i class="i i-phone-portrait"></i>Saved here</em><small>Bench Press</small><b>Set 4</b><span>190 lb &times; 8</span><i class="i i-checkmark"></i></div></div>
+              <div class="widget"><img class="wlogo" src={url('logo.png')} alt="" width="22" height="22" loading="lazy" /><small>Today</small><b>Push Day</b><div class="meter"><i></i></div></div>
             </div>
           )}
           {s.visual === 'lock' && (
             <div class="gizmo">
               <div class="lock">
-                <div class="time">9:41</div><div class="date">Monday, March 9</div>
+                <div class="date">Monday, March 9</div>
+                <div class="inl"><i class="i i-play"></i>Push Day &middot; 3/4 this week</div>
+                <div class="time">9:41</div>
+                <div class="accs">
+                  <div class="ring-w"><svg viewBox="0 0 62 62" aria-hidden="true"><circle cx="31" cy="31" r="26" /><circle class="fg" cx="31" cy="31" r="26" /></svg><b>3/4</b></div>
+                  <div class="ring-w"><svg viewBox="0 0 62 62" aria-hidden="true"><circle cx="31" cy="31" r="26" /><circle class="fg" cx="31" cy="31" r="26" /></svg><b><i class="i i-flame"></i>6</b></div>
+                  <div class="rect-w"><span>TODAY</span><b>Push Day</b><small>3/4 this week</small></div>
+                </div>
                 <div class="live"><div class="top"><span>Push Day</span><span>32:18</span></div><small>Barbell Bench Press &middot; Set 4 of 5</small><div class="meter"><i></i></div></div>
               </div>
             </div>

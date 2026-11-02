@@ -46,6 +46,14 @@
 .lock .live { margin-top: 26px; text-align: left; padding: 14px 16px; border-radius: 22px; background: rgba(255,255,255,.12); backdrop-filter: blur(10px); display: grid; gap: 8px; }
 .lock .live .top { display: flex; justify-content: space-between; font-weight: 800; font-size: 15px; } .lock .live small { color: rgba(255,255,255,.7); font-size: 12.5px; }
 .lock .meter { background: rgba(255,255,255,.2); } .lock .meter i { background: var(--sky); width: 56%; }
+.lock .date { margin-top: 2px; } .lock .time { margin-top: 6px; }
+.lock .inl { display: flex; align-items: center; justify-content: center; gap: 7px; margin-top: 10px; font-weight: 800; font-size: 14px; } .lock .inl .i { font-size: 12px; }
+.lock .accs { display: flex; gap: 10px; margin-top: 18px; align-items: center; justify-content: center; }
+.ring-w { position: relative; width: 62px; height: 62px; border-radius: 50%; display: grid; place-items: center; background: rgba(255,255,255,.14); flex: none; } .ring-w b { font-size: 15px; display: flex; align-items: center; gap: 2px; } .ring-w b .i { font-size: 13px; }
+.ring-w svg { position: absolute; inset: 0; transform: rotate(-90deg); } .ring-w circle { fill: none; stroke: rgba(255,255,255,.25); stroke-width: 5; } .ring-w circle.fg { stroke: #fff; stroke-linecap: round; stroke-dasharray: 163.4; stroke-dashoffset: 40.8; }
+.rect-w { width: 118px; height: 62px; border-radius: 16px; background: rgba(255,255,255,.14); padding: 8px 12px; text-align: left; display: flex; flex-direction: column; justify-content: center; flex: none; } .rect-w span { font-size: 10px; font-weight: 800; letter-spacing: .06em; opacity: .8; } .rect-w b { font-size: 15px; line-height: 1.15; } .rect-w small { font-size: 11px; opacity: .85; }
+.gizmo .widget { position: relative; } .wlogo { position: absolute; right: 14px; top: 12px; width: 22px; height: 22px; object-fit: contain; background: #fff; border-radius: 7px; padding: 2px; }
+.gizmo .watch .away, .viz-wrist .watch .away { position: absolute; top: 14px; left: 50%; transform: translateX(-50%); display: inline-flex; align-items: center; gap: 4px; padding: 2px 9px; border-radius: 99px; font-style: normal; font-size: 10px; font-weight: 800; white-space: nowrap; color: #FBBF24; background: rgba(251,191,36,.16); } .watch .away .i { position: static; width: auto; height: auto; background: none; font-size: 10px; }
 
 /* ---------- related + index ---------- */
 .rel { padding: 40px 0 20px; }

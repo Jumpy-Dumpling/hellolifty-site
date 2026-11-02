@@ -8,7 +8,7 @@ The Lifty marketing site. It is an [Astro](https://astro.build) static site host
 | Path | What it is |
 |------|------------|
 | `/` | Home: hero, scrolling story, feature tiles, pricing summary, waitlist, FAQ |
-| `/features/` | All features, and a deep-dive page for each (set logging, AI plans, adaptive coach, progress and body, friends, challenges, Lifty Studio, Apple Watch) |
+| `/features/` | All features, and a deep-dive page for each (set logging, AI plans, adaptive coach and training blocks, progress, insights and body, friends, challenges, Lifty Studio, Apple Watch and widgets) |
 | `/pricing/` | Plans, what is included, how the trial works, billing FAQ |
 | `/about/` | The story and values |
 | `/contact/` | A contact form (messages land in your Supabase database) |
@@ -16,7 +16,11 @@ The Lifty marketing site. It is an [Astro](https://astro.build) static site host
 
 **Analytics and cookie consent.** Google Analytics (`GA_ID` in `src/lib/consent.ts`) loads only after consent: automatically outside the EU, EEA, UK and Switzerland, after the visitor taps Accept inside them (the region is guessed from the browser's time zone, and an unreadable one counts as inside), and never when the browser sends Global Privacy Control. The footer's Cookie settings reopen the choice for everyone. Logic: `src/lib/consent.ts` (rules) and `src/scripts/consent.ts` (banner and loading). When you add another tool that sets cookies, load it from the same place.
 
-The **Features mega menu** in the nav is built from the same list as the deep-dive pages, so adding a feature to `src/data/features.ts` adds it to the menu,
+The app screens on the site are pictures made by `design/screens.py` (plain HTML in the app's own look, photographed with Chrome into `public/screens/*.webp`; run `python3 design/screens.py` for all or `python3 design/screens.py insights` for one). Today, Insights and Block were added for training blocks and the redesigned Insights screen.
+
+The free-versus-Premium section on the home page (`src/components/FreeVsPremium.astro`) is one grid of tiles with a plan filter, each tile marked Free or Premium. Add a capability by adding a line to its `tiles` list.
+
+The **Features mega menu** is a short list of features on the left and a stage on the right: hovering (or tabbing to) a feature swaps in its name, one line, and a small animated scene that replays each time (`Nav.astro`, `scripts/nav.ts`, the `.mstage` and `.scene` rules in `styles/base.css`). A new feature needs a scene block for its slug in `Nav.astro`, or its stage is just the title and the link. The menu is built from the same list as the deep-dive pages, so adding a feature to `src/data/features.ts` adds it to the menu,
 the features index, the footer and its own page.
 
 ## Run it

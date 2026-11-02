@@ -73,21 +73,24 @@ def section(title, right=''):
 
 # ------------------------------------------------------------------ screens
 def today():
-    thumbs = ''.join(f'<div class="thumb" style="flex:1;aspect-ratio:1;border-radius:12px;font-size:26px">{ic(i)}</div>'
+    tile = lambda icon, tint, title, sub: (f'<div style="flex:1;min-height:100px;padding:12px;border-radius:20px;background:{tint}12;border:1px solid {tint}47;display:flex;flex-direction:column;gap:10px">'
+                                           f'<div style="width:40px;height:40px;border-radius:14px;background:{tint};display:flex;align-items:center;justify-content:center;color:#fff">{ic(icon, 21)}</div>'
+                                           f'<div style="margin-top:auto"><div style="font-weight:800;font-size:16px;letter-spacing:-.2px">{title}</div><div class="dim" style="font-size:12.5px;line-height:16px">{sub}</div></div></div>')
+    thumbs = ''.join(f'<div class="thumb" style="flex:1;aspect-ratio:1.45;border-radius:12px;font-size:24px">{ic(i)}</div>'
                      for i in ('barbell', 'body', 'fitness', 'barbell'))
     body = status() + header('Good morning, Alex', 'Monday, Mar 9',
         left=f'<div style="position:relative">{avatar("A", 44, ring=True)}<div style="position:absolute;right:-1px;bottom:-1px;width:18px;height:18px;border-radius:9px;background:var(--accent);border:2px solid var(--bg);display:flex;align-items:center;justify-content:center;color:#fff">{ic("settings", 10)}</div></div>',
         right=f'<div class="pill">{ic("flame", 16)}<span>6</span></div>') + f'''
 <div class="content" style="top:135px">
   <div class="display">Let&rsquo;s lift.</div>
-  <div class="card row g16" style="margin-top:24px">
+  <div class="card row g16" style="margin-top:14px">
     {ring(84, 9, .75, '<span class="heading num">3/4</span>')}
     <div class="row g16 f1">
       <div class="f1"><div class="label faint">Streak</div><div class="row" style="align-items:baseline;gap:3px;margin-top:4px"><span class="title acc num">6</span><span class="dim" style="font-size:13px">weeks</span></div></div>
       <div class="f1"><div class="label faint">Recent PRs</div><div class="row" style="margin-top:4px"><span class="title num" style="color:var(--pr)">4</span></div></div>
     </div>
   </div>
-  <div class="card row g12" style="margin-top:12px">{ic("flag", 22, "var(--accent)")}<div class="f1"><div style="font-weight:700">Challenges</div><div class="dim" style="font-size:13px">2 in progress. Tap to check on them.</div></div>{ic("chevron-forward", 18, "var(--faint)")}</div>
+  <div style="display:flex;gap:12px;margin-top:12px">{tile("flag", "#0A7AFF", "Challenges", "2 in progress")}{tile("people", "#F5A524", "Invite friends", "They get 60 days free. You earn a shirt.")}</div>
   {section("Today&rsquo;s workout")}
   <div style="border-radius:28px;box-shadow:var(--glow)"><div style="border-radius:28px;padding:18px;background:var(--hero);position:relative;overflow:hidden;color:#fff">
     <img src="../../public/logo.png" style="position:absolute;right:-30px;top:-24px;width:190px;height:198px;opacity:.13">
@@ -411,7 +414,76 @@ def challenges():
     return page(body)
 
 
-SCREENS = {'plan': plan, 'train': train, 'body': body, 'challenges': challenges, 'today': today, 'workout': workout, 'summary': summary, 'progress': progress, 'friends': friends, 'studio': studio, 'coach': coach, 'paywall': paywall}
+
+def spark(vals, color, w=300, h=46):
+    lo, hi = min(vals), max(vals)
+    span = (hi - lo) or 1
+    pts = [(4 + i * (w - 8) / (len(vals) - 1), h - 8 - (v - lo) / span * (h - 16)) for i, v in enumerate(vals)]
+    line = ' '.join(('M' if i == 0 else 'L') + f'{x:.1f} {y:.1f}' for i, (x, y) in enumerate(pts))
+    gid = 'g' + color[1:]
+    return (f'<svg width="100%" height="{h}" viewBox="0 0 {w} {h}" preserveAspectRatio="none"><defs><linearGradient id="{gid}" x1="0" y1="0" x2="0" y2="1">'
+            f'<stop offset="0" stop-color="{color}" stop-opacity=".28"/><stop offset="1" stop-color="{color}" stop-opacity="0"/></linearGradient></defs>'
+            f'<path d="{line} L{pts[-1][0]:.1f} {h} L{pts[0][0]:.1f} {h} Z" fill="url(#{gid})"/><path d="{line}" fill="none" stroke="{color}" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>'
+            f'<circle cx="{pts[-1][0]:.1f}" cy="{pts[-1][1]:.1f}" r="3.6" fill="#fff" stroke="{color}" stroke-width="2.2"/></svg>')
+
+
+def closebtn():
+    return f'<div style="width:30px;height:30px;border-radius:15px;background:var(--surfaceHi);display:flex;align-items:center;justify-content:center;color:var(--dim)">{ic("close", 16)}</div>'
+
+
+def insights():
+    def lift(name, meta, label, color, vals, note='', cta=''):
+        return (f'<div class="card" style="margin-top:10px;padding:14px 14px 14px 20px;position:relative;overflow:hidden">'
+                f'<i style="position:absolute;left:0;top:14px;bottom:14px;width:4px;border-radius:0 4px 4px 0;background:{color}"></i>'
+                f'<div class="row g8"><div class="f1"><div style="font-weight:800;font-size:15.5px">{name}</div><div class="dim" style="font-size:12.5px">{meta}</div></div>'
+                f'<div style="padding:4px 10px;border-radius:99px;background:{color}24;color:{color};font-weight:800;font-size:12px">{label}</div></div>'
+                f'<div style="margin-top:6px">{spark(vals, color)}</div>'
+                + (f'<div style="font-size:13px;font-weight:600;color:{color};margin-top:4px">{note}</div>' if note else '')
+                + (f'<div class="acc" style="font-size:13px;font-weight:800;margin-top:6px">{cta}</div>' if cta else '') + '</div>')
+    tile = lambda val, label, delta: (f'<div style="flex:1;padding:9px;border-radius:14px;background:rgba(255,255,255,.09);border:1px solid rgba(255,255,255,.12)">'
+                                      f'<div class="num" style="color:#fff;font-weight:800;font-size:18px">{val}</div><div style="font-size:11px;color:#8FC4FF">{label} <b style="color:#6CE8AE">{delta}</b></div></div>')
+    bars = ''.join(f'<div style="flex:1;height:{h}px;border-radius:6px;background:{"#fff" if i == 3 else "rgba(92,200,255,.85)"}"></div>' for i, h in enumerate([20, 28, 24, 40]))
+    body = status() + header('Insights', '', right=closebtn(), small=True) + f'''
+<div class="content" style="top:150px">
+  <div style="border-radius:24px;padding:16px;background:linear-gradient(150deg,#2A4BB0,#1B2F66 40%,#0B1B44);position:relative;overflow:hidden;box-shadow:0 14px 28px rgba(11,27,68,.3)">
+    <i style="position:absolute;right:-60px;top:-70px;width:200px;height:200px;border-radius:100px;background:rgba(92,200,255,.28)"></i>
+    <div style="font-size:10.5px;font-weight:800;letter-spacing:1px;color:#8FC4FF;position:relative">LAST 30 DAYS</div>
+    <div class="row" style="align-items:baseline;gap:6px;margin-top:4px;position:relative"><span class="num" style="color:#fff;font-size:38px;font-weight:800;letter-spacing:-1px">128,400</span><span style="color:#8FC4FF;font-weight:700;font-size:15px">lb</span></div>
+    <div style="display:inline-block;margin-top:6px;padding:3px 10px;border-radius:99px;background:rgba(45,190,123,.22);color:#6CE8AE;font-size:11.5px;font-weight:800;position:relative">&#9650; 12% on the 30 days before</div>
+    <div class="row" style="align-items:flex-end;gap:6px;height:42px;margin-top:12px;position:relative">{bars}</div>
+    <div class="row g8" style="margin-top:12px;position:relative">{tile("14", "workouts", "+2")}{tile("262", "sets", "+8%")}{tile("5", "records", "+3")}</div>
+  </div>
+  <div class="row g12" style="margin-top:12px;padding:12px;border-radius:18px;background:#FFF6E6;border:1px solid #F8DCA6"><div style="width:34px;height:34px;border-radius:11px;background:linear-gradient(135deg,#FFC24A,#F59E0B);display:flex;align-items:center;justify-content:center;color:#fff">{ic("alert", 20)}</div><div class="f1"><div style="font-weight:800">2 lifts need a look</div><div class="dim" style="font-size:13px">Back Squat is stalled. Barbell Row is slipping.</div></div></div>
+  {section("Your lifts")}
+  {lift("Back Squat", "Best 315 lb &middot; 12 sessions", "Stalled", "#F59E0B", [290, 296, 300, 305, 315, 312, 314, 313, 315, 312, 314, 313], "No new best in 5 weeks across 6 sessions.", "Plan a deload block &rsaquo;")}
+  {lift("Bench Press", "Best 245 lb &middot; 14 sessions", "Rising &middot; +6.1%", "#2DBE7B", [215, 218, 222, 224, 229, 231, 236, 238, 242, 245])}
+</div>'''
+    return page(body)
+
+
+def block():
+    chip = lambda i, label, col, state='': (f'<div style="min-width:48px;padding:6px 8px;border-radius:11px;text-align:center;font-size:10.5px;font-weight:700;line-height:1.3;'
+                                            + (f'background:{col};color:#fff;' if state == 'on' else f'background:{col}24;color:{col};') + ('opacity:.45;' if state == 'past' else '') + f'"><b style="display:block;font-size:11px;font-weight:800">W{i}</b>{label}</div>')
+    B, G, K = '#0A7AFF', '#F5A524', '#2DBE7B'
+    weeks = ''.join([chip(1, 'Build', B, 'past'), chip(2, 'Build', B, 'past'), chip(3, 'Build', B, 'past'), chip(4, 'Build', B, 'past'), chip(5, 'Push', G, 'on'), chip(6, 'Deload', K)])
+    body = status() + header('Training block', '', right=closebtn(), small=True) + f'''
+<div class="content" style="top:150px">
+  <div class="dim" style="font-size:14.5px;line-height:21px">Book your deload weeks ahead. In a deload week workouts start with fewer sets at a lighter weight.</div>
+  <div class="card accent" style="margin-top:14px;display:flex;flex-direction:column;gap:10px">
+    <div class="row g12">{ic("barbell", 28, "#F5A524")}<div><div style="font-weight:800;font-size:19px;letter-spacing:-.3px">Block week 5 of 6</div><div style="font-weight:800;font-size:14px;color:#F5A524">Push week</div></div></div>
+    <div class="dim" style="font-size:14px;line-height:20px">Your hardest week. Aim for the top of every rep range.</div>
+    <div class="faint" style="font-size:12.5px">3 days left this week &middot; deload starts Mon 30 Nov</div>
+  </div>
+  {section("The plan")}
+  <div class="row g8" style="flex-wrap:wrap">{weeks}</div>
+  <div class="card row g12" style="margin-top:16px"><div style="flex:none;width:36px;height:36px;border-radius:12px;background:rgba(45,190,123,.15);display:flex;align-items:center;justify-content:center;color:#2DBE7B">{ic("battery-charging", 20)}</div><div class="dim" style="font-size:13.5px;line-height:19px"><b style="color:var(--text)">Next week is a deload.</b> Lifty reminds you the evening before, and workouts set themselves up lighter.</div></div>
+  <div class="card row g12" style="margin-top:12px"><div style="flex:none;width:36px;height:36px;border-radius:12px;background:rgba(245,165,36,.16);display:flex;align-items:center;justify-content:center;color:#F5A524">{ic("trending-up", 20)}</div><div class="dim" style="font-size:13.5px;line-height:19px"><b style="color:var(--text)">Push weeks aim higher.</b> When Lifty suggests more reps at the same weight, it points you at the top of the range.</div></div>
+  <div class="row g12" style="margin-top:12px;padding:14px;border-radius:20px;background:#fff;border:.5px solid var(--border)"><div class="f1"><div style="font-weight:700">6-week block</div><div class="faint" style="font-size:12.5px">Started Mon 19 Oct</div></div><div class="dim" style="font-weight:800;font-size:14px">End block</div></div>
+</div>'''
+    return page(body)
+
+
+SCREENS = {'plan': plan, 'train': train, 'body': body, 'challenges': challenges, 'today': today, 'workout': workout, 'summary': summary, 'progress': progress, 'friends': friends, 'studio': studio, 'coach': coach, 'paywall': paywall, 'insights': insights, 'block': block}
 
 
 def render(name):

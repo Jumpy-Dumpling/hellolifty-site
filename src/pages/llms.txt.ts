@@ -13,7 +13,7 @@ export const GET: APIRoute = ({ site }) => {
     '',
     `${SITE_NAME} is a strength training app for iPhone and Android, made by Zac at Jumpy Dumpling. It is not released yet: people can join the waitlist at ${absolute('', site)} to be emailed at launch.`,
     '',
-    `Pricing: Lifty is free to start. Logging, workout history, importing from Strong or Hevy, friends and challenges, and the Apple Watch app are free for good. Premium (the adaptive coach, AI plans, deeper analytics and the full Studio) is ${PRICE_MONTHLY} a month, ${PRICE_YEARLY} a year, or ${PRICE_LIFETIME} once for Lifetime (a limited-time offer). Every new account gets ${TRIAL_DAYS} days of Premium with no card (${REFERRAL_TRIAL_DAYS} days if a friend invited you).`,
+    `Pricing: Lifty is free to start. Logging, workout history, importing from Strong or Hevy, friends and challenges, and the Apple Watch app are free for good. Premium (the adaptive coach, training blocks, AI plans, plateau alerts and the full Studio) is ${PRICE_MONTHLY} a month, ${PRICE_YEARLY} a year, or ${PRICE_LIFETIME} once for Lifetime (a limited-time offer). Every new account gets ${TRIAL_DAYS} days of Premium with no card (${REFERRAL_TRIAL_DAYS} days if a friend invited you).`,
     '',
     '## Features',
     '',
